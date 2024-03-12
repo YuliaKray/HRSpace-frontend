@@ -1,12 +1,14 @@
 import { useMultistepForm } from "./assets/useMultistepForm"
-import './App.css'
+import './App.scss'
 import { GeneralInfoForm } from "./formComponents/GeneralInfoForm"
+import { Header } from "./Components/Header/Header"
 
 
 function App() {
   const { step, steps, currentStepIndex, previousStep, nextStep } = useMultistepForm([<GeneralInfoForm/>, <div>Step 2</div>, <div>Step 3</div>])
   return (
     <>
+    <Header/>
       <form style={{
         display: 'flex',
         alignItems: 'center',
