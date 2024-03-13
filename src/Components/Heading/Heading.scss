@@ -1,0 +1,19 @@
+.heading {
+    padding: 43px 97px 40px;
+    text-align: left;
+
+    &__pass {
+        margin: 0;
+        padding: 0 0 40px;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 134%
+    }
+
+    &__title {
+        margin: 0;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 116%;
+    }
+}

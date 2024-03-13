@@ -1,3 +1,5 @@
+import "./GeneralInfoForm.scss"
+
 export function GeneralInfoForm() {
     return (
         <div style={{
@@ -41,8 +43,28 @@ export function GeneralInfoForm() {
                 <input type="checkbox" id="startDate" name="noRush" />
             </div>
 
-            <label htmlFor="">Кол-во рекрутеров</label>
+
+
+            <label>Кол-во рекрутеров</label>
+            <div className="">
+                <div className="form_radio_btn">
+                    <input type="radio" id="radio-1" name="radio" value="1" />
+                    <label htmlFor="radio-1">1</label>
+                </div>
+
+                <div className="form_radio_btn">
+                    <input type="radio" id="radio-2" name="radio" value="2" />
+                    <label htmlFor="radio-2">2</label>
+                </div>
+
+                <div className="form_radio_btn">
+                    <input type="radio" id="radio-3" name="radio" value="3" />
+                    <label htmlFor="radio-3">3</label>
+                </div>
+            </div>
             {/* я хз как сделать такой чекбокс. Возможно, это не чекбокс, а input type="select" */}
+            
+            {/*Вычитала этот вариант в интернете. Мне кажется, он подойдет для подобных кнопок, где надо выбрать один вариант*/}
 
 
 

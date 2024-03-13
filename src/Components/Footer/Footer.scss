@@ -1,0 +1,120 @@
+.footer {
+    box-sizing: border-box;
+    padding: 40px 80px;
+    margin-top: 120px;
+    width: 100%;
+    // background-color: #222342;
+    background-color: #2a2e31;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 40px;
+
+    &__telephoneWrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__telephoneInner {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: start;
+    }
+
+    &__city {
+        margin: 0;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 134%;
+    }
+
+    &__number {
+        margin: 0;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 140%;
+    }
+
+    &__email {
+        margin: 0;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 140%;
+    }
+
+    &__logoWrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        border-bottom: 1px solid rgba(149, 151, 153, 0.5);
+    }
+
+    &__logo {
+        padding-bottom: 40px;
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+    }
+
+    &__img {
+        width: 46px;
+        height: 46px;
+    }
+
+    &__name {
+        width: 80px;
+        height: 21px;
+    }
+
+    &__icons {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+    }
+
+    &__icon {
+        text-decoration: none;
+    }
+
+    &__iconImg {
+        width: 40px;
+        height: 40px;
+    }
+
+    &__copyrightWrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    &__links {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+    }
+
+    &__link {
+        color: #fff;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 134%;
+    }
+
+    &__copyright {
+        margin: 0;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 134%;
+    }
+}
