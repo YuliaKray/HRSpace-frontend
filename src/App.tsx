@@ -1,40 +1,13 @@
-import { useMultistepForm } from "./assets/useMultistepForm"
-import './App.scss'
-import { GeneralInfoForm } from "./formComponents/GeneralInfoForm"
-import { Header } from "./Components/Header/Header"
+import './App.scss';
+import { Header } from "./Components/Header/Header";
+import { Form } from "./Components/Form";
 
 
 function App() {
-  const { step, steps, currentStepIndex, previousStep, nextStep } = useMultistepForm([<GeneralInfoForm/>, <div>Step 2</div>, <div>Step 3</div>])
-  return (
+  return( 
     <>
     <Header/>
-      <form style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        width: '100%',
-        height: '100vh',
-        margin: '0 auto',
-        gap: '10px'
-      }} action="">
-        <div>
-          {currentStepIndex +1} / {steps.length}
-        </div>
-        <div style={{
-          display: 'flex',
-          width: '100%',
-          margin: '0 auto',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: '10px'
-        }}>
-          {currentStepIndex !== 0 && <button type="button" onClick={previousStep}>previous step</button>}
-          {currentStepIndex !== steps.length - 1 && <button type="button" onClick={nextStep}>next step</button>}
-        </div>
-        {step}
-      </form>
+    <Form/>
     </>
   )
 }
