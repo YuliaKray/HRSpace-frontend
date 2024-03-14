@@ -15,12 +15,13 @@ export function Form() {
         if (isLastStep) {
             console.log('submit')
         } else {
-            // nextStep()
+            nextStep()
+            // event.target.form.checkValidity()
         }
     }
     return (
         <>
-            <form
+            <form className="form"
                 onSubmit={handleSubmit}
                 style={{
                     display: 'flex',
@@ -31,20 +32,25 @@ export function Form() {
                     height: '100vh',
                     margin: '0 auto',
                     gap: '10px'
-                }} action="">
+                }} 
+                action="">
                 <div>
                     {currentStepIndex + 1} / {steps.length}
                 </div>
-                <div style={{
+                <div 
+                style={{
                     display: 'flex',
                     width: '100%',
                     margin: '0 auto',
                     justifyContent: 'center',
                     alignItems: 'center',
                     gap: '10px'
-                }}>
+                }}
+                >
                     {!isFirstStep && <button type="button" onClick={previousStep}>previous step</button>}
                     {!isLastStep && <button type="submit">next step</button>}
+                    {/* {!isLastStep && <button type="button" onClick={handleSubmit}>next step</button>} */}
+
                 </div>
                 {step}
             </form>

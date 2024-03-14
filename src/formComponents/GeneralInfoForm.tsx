@@ -1,3 +1,5 @@
+import { SelectedItemContainer } from "../Components/Checkbox/SelectedItemContainer";
+import { firstWorkDay, workSchedule } from "../assets/constants"; //Это константы для переиспользования компонентов
 import "./GeneralInfoForm.scss";
 import { useState } from "react";
 
@@ -25,8 +27,8 @@ export function GeneralInfoForm() {
             }}
         >
             <h2>Шаг 1 из 5. Общая информация</h2>
-            <li>
-                <ul>
+            <ul>
+                <li>
                     <label htmlFor="name">Название</label>
                     <input
                         type="text"
@@ -36,8 +38,8 @@ export function GeneralInfoForm() {
                         value={name}
                         required
                     />
-                </ul>
-                <ul>
+                </li>
+                <li>
                     <label htmlFor="title">Профессия</label>
                     <input
                         type="select"
@@ -47,7 +49,7 @@ export function GeneralInfoForm() {
                         value={title}
                         required
                     />
-                </ul>
+                </li>
                 <label htmlFor="location">Город</label>
                 <input
                     type="select"
@@ -57,7 +59,7 @@ export function GeneralInfoForm() {
                     value={location}
                     required
                 />
-                <ul>
+                <li>
                     <label htmlFor="salary">Зарплата gross (до вычета НДФЛ), ₽</label>
                     <input
                         type="number"
@@ -79,8 +81,8 @@ export function GeneralInfoForm() {
                         value={highestSalary}
                         required
                     />
-                </ul>
-                <ul>
+                </li>
+                <li>
                     <label htmlFor="numberOfEmployees">Количество сотрудников*</label>
                     <input
                         type="number"
@@ -88,10 +90,14 @@ export function GeneralInfoForm() {
                         name="numberOfEmployees"
                         required
                     />
-                </ul>
-                <ul>
-                    <label >Выход на работу</label>
-                    <fieldset>
+                </li>
+                <li>
+                    {/*Переисопльзованный компанент*/}
+                    <SelectedItemContainer
+                    isCheckbox={false}
+                    constants={firstWorkDay}/>
+                    {/* <fieldset>
+                    <legend >Выход на работу</legend>
                         <div>
                             <label htmlFor="startTommorow">Сможет приступить завтра</label>
                             <input type="checkbox" id="startDate" name="startTommorow" />
@@ -105,12 +111,13 @@ export function GeneralInfoForm() {
                             <label htmlFor="noRush">Не спешу с поиском</label>
                             <input type="checkbox" id="startDate" name="noRush" />
                         </div>
-                    </fieldset>
-                </ul>
+                    </fieldset> */}
+                </li>
 
-                <ul>
-                    <label>Кол-во рекрутеров</label>
+                <li>
+                    {/* <label>Кол-во рекрутеров</label> */}
                     <fieldset className="">
+                        <legend>Кол-во рекрутеров</legend>
                         <div className="form_radio_btn">
                             <input type="radio" id="radio-1" name="recruitersQty" checked={recruitersQty === "1"} onChange={onRecruitersQtyChange} value="1" />
                             <label htmlFor="radio-1">1</label>
@@ -126,8 +133,14 @@ export function GeneralInfoForm() {
                             <label htmlFor="radio-3">3</label>
                         </div>
                     </fieldset>
-                </ul>
-            </li>
+                </li>
+
+
+                {/* Проверка как работает переиспользованый компонент */}
+                <SelectedItemContainer 
+                constants={workSchedule}
+                isCheckbox={true}/>
+            </ul>
         </div>
     );
 }
