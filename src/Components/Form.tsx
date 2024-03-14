@@ -7,13 +7,15 @@ export function Form() {
     const { step, steps, currentStepIndex, previousStep, nextStep, isFirstStep, isLastStep } = useMultistepForm([<GeneralInfoForm />, <div>Step 2</div>, <div>Step 3</div>])
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        // нужно придумать как хранить данные из формы
+        // на каждом этапе формы происходит сабмит и переход на следующий этап, но данные из формы не сохраняются
         event.preventDefault()
-        console.log(event.target);
-
+        console.log(event.target.name.value)
+        // лог сверху хоть и подчеркивает ошибку, но результат корректный
         if (isLastStep) {
             console.log('submit')
         } else {
-            nextStep()
+            // nextStep()
         }
     }
     return (
