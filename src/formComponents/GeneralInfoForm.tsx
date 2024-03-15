@@ -1,19 +1,22 @@
 import { SelectedItemContainer } from "../Components/Checkbox/SelectedItemContainer";
 import { firstWorkDay, workSchedule } from "../assets/constants"; //Это константы для переиспользования компонентов
 import "./GeneralInfoForm.scss";
-import { useState } from "react";
 
-export function GeneralInfoForm() {
-    const [name, setName] = useState("");
-    const [title, setTitle] = useState("");
-    const [location, setLocation] = useState("");
-    const [lowestSalary, setLowestSalary] = useState("");
-    const [highestSalary, setHighestSalary] = useState("");
-    const [recruitersQty, setRecruitsQty] = useState("");
+type GeneralInfo = {
+    name: string;
+    title: string;
+    location: string;
+    lowestSalary: number;
+    highestSalary: number;
+    numberOfEmployees: number;
+    recruitersQty: number;
+}
 
-    function onRecruitersQtyChange(e: React.ChangeEvent<HTMLInputElement>) {
-        setRecruitsQty(e.target.value);
-    }
+type GeneralInfoFormProps = GeneralInfo & {
+    updateFields: (fields: Partial<GeneralInfo>) => void;
+}
+
+export function GeneralInfoForm({ name, title, location, lowestSalary, highestSalary, numberOfEmployees, recruitersQty, updateFields }: GeneralInfoFormProps) {
 
     return (
         <div
@@ -27,6 +30,7 @@ export function GeneralInfoForm() {
             }}
         >
             <h2>Шаг 1 из 5. Общая информация</h2>
+            {/* тут будут три карточки */}
             <ul>
                 <li>
                     <label htmlFor="name">Название</label>
@@ -34,7 +38,7 @@ export function GeneralInfoForm() {
                         type="text"
                         id="name"
                         name="name"
-                        onChange={(e) => setName(e.target.value)}
+                        onChange={(e) => updateFields({ name: e.target.value })}
                         value={name}
                         required
                     />
@@ -45,7 +49,7 @@ export function GeneralInfoForm() {
                         type="select"
                         id="title"
                         name="title"
-                        onChange={(e) => setTitle(e.target.value)}
+                        onChange={(e) => updateFields({ title: e.target.value })}
                         value={title}
                         required
                     />
@@ -55,7 +59,7 @@ export function GeneralInfoForm() {
                     type="select"
                     id="phone"
                     name="location"
-                    onChange={(e) => setLocation(e.target.value)}
+                    onChange={(e) => updateFields({ location: e.target.value })}
                     value={location}
                     required
                 />
@@ -63,21 +67,19 @@ export function GeneralInfoForm() {
                     <label htmlFor="salary">Зарплата gross (до вычета НДФЛ), ₽</label>
                     <input
                         type="number"
-                        step={500}
                         id="salary"
                         name="salary"
                         placeholder="от"
-                        onChange={(e) => setLowestSalary(e.target.value)}
+                        onChange={(e) => updateFields({ lowestSalary: parseInt(e.target.value) })}
                         value={lowestSalary}
                         required
                     />
                     <input
                         type="number"
-                        step={500}
                         id="salary"
                         name="salary"
                         placeholder="до"
-                        onChange={(e) => setHighestSalary(e.target.value)}
+                        onChange={(e) => updateFields({ lowestSalary: parseInt(e.target.value) })}
                         value={highestSalary}
                         required
                     />
@@ -88,14 +90,16 @@ export function GeneralInfoForm() {
                         type="number"
                         id="numberOfEmployees"
                         name="numberOfEmployees"
+                        onChange={(e) => updateFields({ numberOfEmployees: parseInt(e.target.value) })}
+                        value={numberOfEmployees}
                         required
                     />
                 </li>
                 <li>
                     {/*Переисопльзованный компанент*/}
                     <SelectedItemContainer
-                    isCheckbox={false}
-                    constants={firstWorkDay}/>
+                        isCheckbox={false}
+                        constants={firstWorkDay} />
                     {/* <fieldset>
                     <legend >Выход на работу</legend>
                         <div>
@@ -119,17 +123,17 @@ export function GeneralInfoForm() {
                     <fieldset className="">
                         <legend>Кол-во рекрутеров</legend>
                         <div className="form_radio_btn">
-                            <input type="radio" id="radio-1" name="recruitersQty" checked={recruitersQty === "1"} onChange={onRecruitersQtyChange} value="1" />
+                            <input type="radio" id="radio-1" name="recruitersQty" checked={recruitersQty === 1} onChange={e => updateFields({ recruitersQty: parseInt(e.target.value) })} value="1" />
                             <label htmlFor="radio-1">1</label>
                         </div>
 
                         <div className="form_radio_btn">
-                            <input type="radio" id="radio-2" name="recruitersqty" checked={recruitersQty === "2"} onChange={onRecruitersQtyChange} value="2" />
+                            <input type="radio" id="radio-2" name="recruitersqty" checked={recruitersQty === 2} onChange={e => updateFields({ recruitersQty: parseInt(e.target.value) })} value="2" />
                             <label htmlFor="radio-2">2</label>
                         </div>
 
                         <div className="form_radio_btn">
-                            <input type="radio" id="radio-3" name="recruitersqty" checked={recruitersQty === "3"} onChange={onRecruitersQtyChange} value="3" />
+                            <input type="radio" id="radio-3" name="recruitersqty" checked={recruitersQty === 3} onChange={e => updateFields({ recruitersQty: parseInt(e.target.value) })} value="3" />
                             <label htmlFor="radio-3">3</label>
                         </div>
                     </fieldset>
@@ -137,9 +141,9 @@ export function GeneralInfoForm() {
 
 
                 {/* Проверка как работает переиспользованый компонент */}
-                <SelectedItemContainer 
-                constants={workSchedule}
-                isCheckbox={true}/>
+                <SelectedItemContainer
+                    constants={workSchedule}
+                    isCheckbox={true} />
             </ul>
         </div>
     );

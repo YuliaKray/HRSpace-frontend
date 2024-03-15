@@ -8,7 +8,7 @@ export function SelectedItemContainer({ constants, isCheckbox }) {
         let render: JSX.Element[] = []; //Хз, правильный ли тип
         if (isCheckbox) {
         for (let i = 0; i < Object.values(constants.answer).length; i++) {
-            console.log(Object.values(constants.answer)[i])
+            // console.log(Object.values(constants.answer)[i])
 
             render = render.concat(
                 <>
@@ -17,13 +17,13 @@ export function SelectedItemContainer({ constants, isCheckbox }) {
                 </>
             )
         }
-        console.log(render)
+        // console.log(render)
         return (
             <>{render}</>
         )
         } else {
             for (let i = 0; i < Object.values(constants.answer).length; i++) {
-                console.log(Object.values(constants.answer)[i])
+                // console.log(Object.values(constants.answer)[i])
     
                 render = render.concat(
                     <>
@@ -32,7 +32,7 @@ export function SelectedItemContainer({ constants, isCheckbox }) {
                     </>
                 )
             }
-            console.log(render)
+            // console.log(render)
             return (
                 <>{render}</>
             ) 
