@@ -1,3 +1,4 @@
+import './Form.scss';
 import React, { useState } from "react";
 import { useMultistepForm } from "../assets/useMultistepForm";
 import { GeneralInfoForm } from "../formComponents/GeneralInfoForm";
@@ -56,22 +57,12 @@ export function Form() {
       <form
         className="form"
         onSubmit={handleSubmit}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-          width: "100%",
-          height: "100vh",
-          margin: "0 auto",
-          gap: "10px",
-        }}
         action=""
       >
-        <div>
+        {/* <div>
           {currentStepIndex + 1} / {steps.length}
-        </div>
-        <div
+        </div> */}
+        {/* <div
           style={{
             display: "flex",
             width: "100%",
@@ -82,20 +73,25 @@ export function Form() {
           }}
         >
 
-        </div>
+        </div> */}
         {step}
-        {!isFirstStep && (
-            <button type="button" onClick={previousStep}>
-              previous step
+        <div className='form__btn-wrapper'>
+          <button type="button" className='form__btn form__btn_close'>
+            Выйти
+          </button>
+          {!isFirstStep && (
+            <button type="button" onClick={previousStep} className='form__btn form__btn_previous'>
+              Назад
             </button>
           )}
           {isLastStep ? (
             <button type="submit">submit</button>
           ) : (
-            <button type="button" onClick={handleNextStep}>
-              next step
+            <button type="button" onClick={handleNextStep} className='form__btn'>
+              Продолжить
             </button>
           )}
+        </div>
       </form>
     </>
   );
