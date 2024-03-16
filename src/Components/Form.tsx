@@ -2,7 +2,9 @@ import './Form.scss';
 import React, { useState } from "react";
 import { useMultistepForm } from "../assets/useMultistepForm";
 import { GeneralInfoForm } from "../formComponents/GeneralInfoForm";
-import { WorkingConditionsForm } from '../formComponents/WorkingConditionsForm'
+// import { WorkingConditionsForm } from '../formComponents/WorkingConditionsForm'
+import { WorkingConditionsForm } from '../formComponents/workingConditionsForm'
+import spangebob from '../images/SpongeBob_SquarePants_character.svg.png'
 
 type FormData = {
   name: string;
@@ -14,6 +16,7 @@ type FormData = {
   startDate: number;
   recruitersQty: number;
   employmentType: number;
+  other: string,
 };
 
 const INITIAL_DATA = {
@@ -29,26 +32,34 @@ const INITIAL_DATA = {
 };
 
 export function Form() {
+
+  const [currentIndex, setCurrentIndex] = useState(1); //попытка сделать чтобы вспывашкив начале сами менялись
   const [formData, setFormData] = useState(INITIAL_DATA);
 
   function updateFields(fields: Partial<FormData>) {
     setFormData((prev) => ({ ...prev, ...fields }));
+    // setCurrentIndex(currentStepIndex);
   }
+
   const {
     step,
+    currentStepIndex,
     previousStep,
     nextStep,
     isFirstStep,
     isLastStep,
   } = useMultistepForm([
-    <GeneralInfoForm {...formData} updateFields={updateFields} />,
-    <WorkingConditionsForm {...formData} updateFields={updateFields} />,
+    <GeneralInfoForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex}/>,
+    <WorkingConditionsForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex}/>,
     <div>Step 3</div>,
   ]);
 
   function handleNextStep(e: React.FormEvent) {
     e.preventDefault();
+
     nextStep();
+    setCurrentIndex(currentStepIndex);
+
   }
 
   function handleSubmit(event: React.FormEvent) {
@@ -63,6 +74,9 @@ export function Form() {
         action=""
       >
         {step}
+
+        <img className='form__img' src={spangebob}/>
+
         <div className='form__btn-wrapper'>
           <button type="button" className='form__btn form__btn_close'>
             Выйти

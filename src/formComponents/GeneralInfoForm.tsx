@@ -1,5 +1,6 @@
 import { SelectedItemContainer } from "../Components/Checkbox/SelectedItemContainer";
 import { firstWorkDay } from "../assets/constants"; //Это константы для переиспользования компонентов
+import { Tooltips } from "../Components/Tooltips/Tooltips"; //Компонент начальных зеленых карточек 
 import "./GeneralInfoForm.scss";
 
 type GeneralInfo = {
@@ -14,26 +15,29 @@ type GeneralInfo = {
 
 type GeneralInfoFormProps = GeneralInfo & {
     updateFields: (fields: Partial<GeneralInfo>) => void;
-}
+} & {currentStepIndex: number}
 
-export function GeneralInfoForm({ name, title, location, lowestSalary, highestSalary, numberOfEmployees, recruitersQty, updateFields }: GeneralInfoFormProps) {
+export function GeneralInfoForm({ name, title, location, lowestSalary, highestSalary, numberOfEmployees, recruitersQty, updateFields, currentStepIndex }: GeneralInfoFormProps) {
     
 
     return (
         <>
             <h2 className="form__title">Шаг 1 из 5. Общая информация</h2>
+
             {/* тут будут три карточки */}
-            <ul
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "40px",
-                    // width: "100%",
-                    maxWidth: "719px",
-                    margin: "0",
-                    padding: "0",
-                    listStyle: "none"
-                }}
+            <Tooltips currentStepIndex={currentStepIndex}/>
+            {/* {console.log(currentStepIndex)} */}
+            <ul className="form__wrapper"
+                // style={{
+                //     display: "flex",
+                //     flexDirection: "column",
+                //     gap: "40px",
+                //     // width: "100%",
+                //     maxWidth: "719px",
+                //     margin: "0",
+                //     padding: "0",
+                //     listStyle: "none"
+                // }}
             >
                 <li className="form__box">
                     <label htmlFor="name" className="form__subtitle">Название <span className="form__required">*</span></label>
