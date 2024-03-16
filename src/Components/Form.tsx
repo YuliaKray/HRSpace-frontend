@@ -2,6 +2,7 @@ import './Form.scss';
 import React, { useState } from "react";
 import { useMultistepForm } from "../assets/useMultistepForm";
 import { GeneralInfoForm } from "../formComponents/GeneralInfoForm";
+import { WorkingConditionsForm } from '../formComponents/WorkingConditionsForm'
 
 type FormData = {
   name: string;
@@ -10,7 +11,9 @@ type FormData = {
   lowestSalary: number;
   highestSalary: number;
   numberOfEmployees: number;
+  startDate: number;
   recruitersQty: number;
+  employmentType: number;
 };
 
 const INITIAL_DATA = {
@@ -20,7 +23,9 @@ const INITIAL_DATA = {
   lowestSalary: 500,
   highestSalary: 1000,
   numberOfEmployees: 1,
-  recruitersQty: 1
+  recruitersQty: 2,
+  startDate: 1,
+  employmentType: 1,
 };
 
 export function Form() {
@@ -31,15 +36,13 @@ export function Form() {
   }
   const {
     step,
-    steps,
-    currentStepIndex,
     previousStep,
     nextStep,
     isFirstStep,
     isLastStep,
   } = useMultistepForm([
     <GeneralInfoForm {...formData} updateFields={updateFields} />,
-    <div>Step 2</div>,
+    <WorkingConditionsForm {...formData} updateFields={updateFields} />,
     <div>Step 3</div>,
   ]);
 
@@ -59,21 +62,6 @@ export function Form() {
         onSubmit={handleSubmit}
         action=""
       >
-        {/* <div>
-          {currentStepIndex + 1} / {steps.length}
-        </div> */}
-        {/* <div
-          style={{
-            display: "flex",
-            width: "100%",
-            margin: "0 auto",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "10px",
-          }}
-        >
-
-        </div> */}
         {step}
         <div className='form__btn-wrapper'>
           <button type="button" className='form__btn form__btn_close'>

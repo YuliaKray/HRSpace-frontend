@@ -17,18 +17,9 @@ type GeneralInfoFormProps = GeneralInfo & {
 }
 
 export function GeneralInfoForm({ name, title, location, lowestSalary, highestSalary, numberOfEmployees, recruitersQty, updateFields }: GeneralInfoFormProps) {
+    
 
     return (
-        // <div
-        //     style={{
-        //         display: "flex",
-        //         flexDirection: "column",
-        //         gap: "10px",
-        //         width: "100%",
-        //         maxWidth: "528px",
-        //         margin: "0",
-        //     }}
-        // >
         <>
             <h2 className="form__title">Шаг 1 из 5. Общая информация</h2>
             {/* тут будут три карточки */}
@@ -130,42 +121,25 @@ export function GeneralInfoForm({ name, title, location, lowestSalary, highestSa
                     <SelectedItemContainer
                         isCheckbox={false}
                         constants={firstWorkDay} />
-                    {/* <fieldset>
-                    <legend >Выход на работу</legend>
-                        <div>
-                            <label htmlFor="startTommorow">Сможет приступить завтра</label>
-                            <input type="checkbox" id="startDate" name="startTommorow" />
-
-                            <label htmlFor="startWithinWeek">В течение недели</label>
-                            <input type="checkbox" id="startDate" name="startWithinWeek" />
-
-                            <label htmlFor="startWithinMonth">В течение месяца</label>
-                            <input type="checkbox" id="startDate" name="startWithinMonth" />
-
-                            <label htmlFor="noRush">Не спешу с поиском</label>
-                            <input type="checkbox" id="startDate" name="noRush" />
-                        </div>
-                    </fieldset> */}
                 </li>
 
                 <li>
-                    {/* <label>Кол-во рекрутеров</label> */}
                     <fieldset className="form__box">
                         <p className='form__subtitle'>Кол-во рекрутеров</p>
                         <div>
                             <div className="form_radio_btn">
-                                <input type="radio" id="radio-1" name="recruitersQty" checked={recruitersQty === 1} onChange={e => updateFields({ recruitersQty: parseInt(e.target.value) })} value="1" />
-                                <label htmlFor="radio-1">1</label>
+                                <input type="radio" id="recruitersQty-1" name="recruitersQty" checked={recruitersQty === 1} onChange={e => updateFields({ recruitersQty: parseInt(e.target.value) })} value="1" />
+                                <label htmlFor="recruitersQty-1">1</label>
                             </div>
 
                             <div className="form_radio_btn">
-                                <input type="radio" id="radio-2" name="recruitersqty" checked={recruitersQty === 2} onChange={e => updateFields({ recruitersQty: parseInt(e.target.value) })} value="2" />
-                                <label htmlFor="radio-2">2</label>
+                                <input type="radio" id="recruitersQty-2" name="recruitersqty" checked={recruitersQty === 2} onChange={e => updateFields({ recruitersQty: parseInt(e.target.value) })} value="2" />
+                                <label htmlFor="rrecruitersQty-2">2</label>
                             </div>
 
                             <div className="form_radio_btn">
-                                <input type="radio" id="radio-3" name="recruitersqty" checked={recruitersQty === 3} onChange={e => updateFields({ recruitersQty: parseInt(e.target.value) })} value="3" />
-                                <label htmlFor="radio-3">3</label>
+                                <input type="radio" id="recruitersQty-3" name="recruitersqty" checked={recruitersQty === 3} onChange={e => updateFields({ recruitersQty: parseInt(e.target.value) })} value="3" />
+                                <label htmlFor="recruitersQty-3">3</label>
                             </div>
                         </div>
                     </fieldset>
@@ -178,6 +152,5 @@ export function GeneralInfoForm({ name, title, location, lowestSalary, highestSa
                     isCheckbox={true} /> */}
             </ul>
         </>
-        // </div>
     );
 }

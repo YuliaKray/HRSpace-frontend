@@ -2,7 +2,7 @@ import './SelectedItemContainer.scss';
 import '../Form.scss';
 
 // Элемент для отрисовки классических чекбоксов и радиокнопок 
-export function SelectedItemContainer({ constants, isCheckbox }) {
+export function SelectedItemContainer({ constants, isCheckbox }: { constants: any, isCheckbox: any}) {
 
     function itemRender() {
         let render: JSX.Element[] = []; //Хз, правильный ли тип
@@ -11,8 +11,8 @@ export function SelectedItemContainer({ constants, isCheckbox }) {
             // console.log(Object.values(constants.answer)[i])
             render = render.concat(
                 <>
-                    <input type="checkbox" id={Object.keys(constants.answer)[i]} name={constants.id} className='form__checkbox'/>
-                    <label className='form__box-title' htmlFor={Object.keys(constants.answer)[i]}>{Object.values(constants.answer)[i]}</label>
+                    <input type="checkbox" value={i + 1 as number} id={Object.keys(constants.answer)[i]} name={constants.id} className='form__checkbox'/>
+                    <label className='form__box-title' htmlFor={Object.keys(constants.answer)[i]}>{Object.values(constants.answer)[i] as string}</label>
                 </>
             )
         }
@@ -22,10 +22,10 @@ export function SelectedItemContainer({ constants, isCheckbox }) {
         } else {
             for (let i = 0; i < Object.values(constants.answer).length; i++) {
                 render = render.concat(
-                    <>
-                        <input type="radio" id={Object.keys(constants.answer)[i]} name={constants.id}  className='form__radio'/>
-                        <label className='form__box-title' htmlFor={Object.keys(constants.answer)[i]}>{Object.values(constants.answer)[i]}</label>
-                    </>
+                    <div key={i} className='form__radio-wrapper'>
+                        <input type="radio" id={Object.keys(constants.answer)[i]} value={i + 1 as number} name={constants.id}  className='form__radio'/>
+                        <label className='form__box-title' htmlFor={Object.keys(constants.answer)[i]}>{Object.values(constants.answer)[i] as string}</label>
+                    </div>
                 )
             }
             return (
