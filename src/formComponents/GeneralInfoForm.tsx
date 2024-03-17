@@ -2,6 +2,7 @@ import { SelectedItemContainer } from "../Components/Checkbox/SelectedItemContai
 import { firstWorkDay } from "../assets/constants"; //Это константы для переиспользования компонентов
 import { Tooltips } from "../Components/Tooltips/Tooltips"; //Компонент начальных зеленых карточек 
 import "./GeneralInfoForm.scss";
+import "../Components/Form.scss"
 
 type GeneralInfo = {
     name: string;
@@ -11,14 +12,23 @@ type GeneralInfo = {
     highestSalary: number;
     numberOfEmployees: number;
     recruitersQty: number;
+    startDate: Array<number>;
 }
 
 type GeneralInfoFormProps = GeneralInfo & {
     updateFields: (fields: Partial<GeneralInfo>) => void;
 } & {currentStepIndex: number}
 
-export function GeneralInfoForm({ name, title, location, lowestSalary, highestSalary, numberOfEmployees, recruitersQty, updateFields, currentStepIndex }: GeneralInfoFormProps) {
-    
+export function GeneralInfoForm({ name, title, location, startDate, lowestSalary, highestSalary, numberOfEmployees, recruitersQty, updateFields, currentStepIndex }: GeneralInfoFormProps) {
+
+    function handexCheckboxChange(e: React.ChangeEvent<HTMLInputElement>) {
+        if (e.target.checked) {
+            updateFields({ startDate: [...startDate, parseInt(e.target.value)] })
+        }
+    else{
+        updateFields({ startDate: startDate.filter((item) => item !== parseInt(e.target.value)) })
+    }        
+}
 
     return (
         <>
@@ -28,16 +38,6 @@ export function GeneralInfoForm({ name, title, location, lowestSalary, highestSa
             <Tooltips currentStepIndex={currentStepIndex}/>
             {/* {console.log(currentStepIndex)} */}
             <ul className="form__wrapper"
-                // style={{
-                //     display: "flex",
-                //     flexDirection: "column",
-                //     gap: "40px",
-                //     // width: "100%",
-                //     maxWidth: "719px",
-                //     margin: "0",
-                //     padding: "0",
-                //     listStyle: "none"
-                // }}
             >
                 <li className="form__box">
                     <label htmlFor="name" className="form__subtitle">Название <span className="form__required">*</span></label>
@@ -120,12 +120,39 @@ export function GeneralInfoForm({ name, title, location, lowestSalary, highestSa
                         required
                     />
                 </li>
+
                 <li>
-                    {/*Переисопльзованный компанент для радиокнопок*/}
+                    <fieldset className="form__chekbox-wrapper">
+                        <p className='form__subtitle'>Когда нужно начать работу</p>
+                        <div>
+                        <input type="checkbox" name="startDate" id="startTommorow" checked={startDate.includes(1)} onChange={e => handexCheckboxChange(e)} value="1" className='form__checkbox'/>
+                        <label htmlFor="startTommorow" className='form__box-title'>Сможет приступить завтра</label>
+                        </div>
+
+                        <div>
+                        <input type="checkbox" name="startDate" id="withinWeek" checked={startDate.includes(2)} onChange={e => handexCheckboxChange(e)} value="2" className='form__checkbox'/>
+                        <label htmlFor="startTommorow" className='form__box-title'>В течение недели</label>
+                        </div>
+                        <div>
+
+                        <input type="checkbox" name="startDate" id="withinMonth" checked={startDate.includes(3)} onChange={e => handexCheckboxChange(e)} value="3" className='form__checkbox'/>
+                        <label htmlFor="startTommorow" className='form__box-title'>В течение месяца</label>
+                        </div>
+
+                        <div>
+                        <input type="checkbox" name="startDate" id="nuRush" checked={startDate.includes(4)} onChange={e => handexCheckboxChange(e)} value="4" className='form__checkbox'/>
+                        <label htmlFor="startTommorow" className='form__box-title'>Не спешу с поиском</label>
+                        </div>
+
+                    </fieldset>
+                </li>
+
+                {/* <li>
+                    Переисопльзованный компанент для радиокнопок 
                     <SelectedItemContainer
                         isCheckbox={false}
                         constants={firstWorkDay} />
-                </li>
+                </li> */}
 
                 <li>
                     <fieldset className="form__box">
@@ -138,7 +165,7 @@ export function GeneralInfoForm({ name, title, location, lowestSalary, highestSa
 
                             <div className="form_radio_btn">
                                 <input type="radio" id="recruitersQty-2" name="recruitersqty" checked={recruitersQty === 2} onChange={e => updateFields({ recruitersQty: parseInt(e.target.value) })} value="2" />
-                                <label htmlFor="rrecruitersQty-2">2</label>
+                                <label htmlFor="recruitersQty-2">2</label>
                             </div>
 
                             <div className="form_radio_btn">
