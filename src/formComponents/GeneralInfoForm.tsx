@@ -17,7 +17,7 @@ type GeneralInfo = {
 
 type GeneralInfoFormProps = GeneralInfo & {
     updateFields: (fields: Partial<GeneralInfo>) => void;
-} & {currentStepIndex: number}
+} & { currentStepIndex: number }
 
 export function GeneralInfoForm({ name, title, location, startDate, lowestSalary, highestSalary, numberOfEmployees, recruitersQty, updateFields, currentStepIndex }: GeneralInfoFormProps) {
 
@@ -25,20 +25,19 @@ export function GeneralInfoForm({ name, title, location, startDate, lowestSalary
         if (e.target.checked) {
             updateFields({ startDate: [...startDate, parseInt(e.target.value)] })
         }
-    else{
-        updateFields({ startDate: startDate.filter((item) => item !== parseInt(e.target.value)) })
-    }        
-}
+        else {
+            updateFields({ startDate: startDate.filter((item) => item !== parseInt(e.target.value)) })
+        }
+    }
 
     return (
         <>
             <h2 className="form__title">Шаг 1 из 5. Общая информация</h2>
 
             {/* тут будут три карточки */}
-            <Tooltips currentStepIndex={currentStepIndex}/>
+            <Tooltips currentStepIndex={currentStepIndex} />
             {/* {console.log(currentStepIndex)} */}
-            <ul className="form__wrapper"
-            >
+            <ul className="form__wrapper">
                 <li className="form__box">
                     <label htmlFor="name" className="form__subtitle">Название <span className="form__required">*</span></label>
                     <input
@@ -121,27 +120,28 @@ export function GeneralInfoForm({ name, title, location, startDate, lowestSalary
                     />
                 </li>
 
-                <li>
-                    <fieldset className="form__chekbox-wrapper">
-                        <p className='form__subtitle'>Когда нужно начать работу</p>
-                        <div>
-                        <input type="checkbox" name="startDate" id="startTommorow" checked={startDate.includes(1)} onChange={e => handexCheckboxChange(e)} value="1" className='form__checkbox'/>
-                        <label htmlFor="startTommorow" className='form__box-title'>Сможет приступить завтра</label>
+                <li className="form__box">
+                    <p className='form__subtitle'>Когда нужно начать работу</p>
+                    <fieldset className="form__fieldset" >
+
+                        <div className="form__radio-wrapper">
+                            <input type="checkbox" name="startDate" id="startTommorow" checked={startDate.includes(1)} onChange={e => handexCheckboxChange(e)} value="1" className='form__checkbox' />
+                            <label htmlFor="startTommorow" className='form__box-title'>Сможет приступить завтра</label>
                         </div>
 
-                        <div>
-                        <input type="checkbox" name="startDate" id="withinWeek" checked={startDate.includes(2)} onChange={e => handexCheckboxChange(e)} value="2" className='form__checkbox'/>
-                        <label htmlFor="startTommorow" className='form__box-title'>В течение недели</label>
-                        </div>
-                        <div>
-
-                        <input type="checkbox" name="startDate" id="withinMonth" checked={startDate.includes(3)} onChange={e => handexCheckboxChange(e)} value="3" className='form__checkbox'/>
-                        <label htmlFor="startTommorow" className='form__box-title'>В течение месяца</label>
+                        <div className="form__radio-wrapper">
+                            <input type="checkbox" name="startDate" id="withinWeek" checked={startDate.includes(2)} onChange={e => handexCheckboxChange(e)} value="2" className='form__checkbox' />
+                            <label htmlFor="startTommorow" className='form__box-title'>В течение недели</label>
                         </div>
 
-                        <div>
-                        <input type="checkbox" name="startDate" id="nuRush" checked={startDate.includes(4)} onChange={e => handexCheckboxChange(e)} value="4" className='form__checkbox'/>
-                        <label htmlFor="startTommorow" className='form__box-title'>Не спешу с поиском</label>
+                        <div className="form__radio-wrapper">
+                            <input type="checkbox" name="startDate" id="withinMonth" checked={startDate.includes(3)} onChange={e => handexCheckboxChange(e)} value="3" className='form__checkbox' />
+                            <label htmlFor="startTommorow" className='form__box-title'>В течение месяца</label>
+                        </div>
+
+                        <div className="form__radio-wrapper">
+                            <input type="checkbox" name="startDate" id="nuRush" checked={startDate.includes(4)} onChange={e => handexCheckboxChange(e)} value="4" className='form__checkbox' />
+                            <label htmlFor="startTommorow" className='form__box-title'>Не спешу с поиском</label>
                         </div>
 
                     </fieldset>

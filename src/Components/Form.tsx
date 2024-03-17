@@ -5,6 +5,9 @@ import { GeneralInfoForm } from "../formComponents/GeneralInfoForm";
 // import { WorkingConditionsForm } from '../formComponents/WorkingConditionsForm'
 import { WorkingConditionsForm } from '../formComponents/workingConditionsForm'
 import spangebob from '../images/SpongeBob_SquarePants_character.svg.png'
+import { EmployeeRequirementsForm } from '../formComponents/EmployeeRequirementsForm';
+import { RecruitersRequirementsForm } from '../formComponents/RecruitersRequirementsForm';
+import { PaymentForm } from '../formComponents/PaymentForm';
 
 type FormData = {
     name: string;
@@ -21,6 +24,19 @@ type FormData = {
     agreementType: string[];
     benefits: string[];
     other: string;
+    education: string[];
+    core_skills: string;
+    driving_skills: string[];
+    has_medical_sertificate: boolean;
+    requirements_description: string;
+    recruiter_responsibilities: string[];
+    description: string;
+    candidate_resume_form: Array<string>;
+    stop_list: string;
+    numberOfPayment: number;
+    paymentFormat: Array<string>;
+
+
 };
 
 const INITIAL_DATA = {
@@ -38,6 +54,19 @@ const INITIAL_DATA = {
     agreementType: Array<string>(),
     benefits: Array<string>(),
     other: '',
+    education: Array<string>(),
+    experience: Array<string>(),
+    core_skills: "",
+    driving_skills: Array<string>(),
+    has_medical_sertificate: false,
+    requirements_description: "",
+    recruiter_responsibilities: Array<string>(),
+    description: "",
+    candidate_resume_form: Array<string>(),
+    stop_list: "",
+    numberOfPayment: 30000,
+    paymentFormat: Array<string>(),
+
 };
 
 export function Form() {
@@ -60,7 +89,9 @@ export function Form() {
     } = useMultistepForm([
         <GeneralInfoForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex} />,
         <WorkingConditionsForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex} />,
-        <div>Step 3</div>,
+        <EmployeeRequirementsForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex} />,
+        <RecruitersRequirementsForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex} />,
+        <PaymentForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex} />,
     ]);
 
     function handleNextStep(e: React.FormEvent) {
@@ -78,13 +109,13 @@ export function Form() {
     return (
         <>
             <form
-                className="form"
+                className={`form ${isLastStep ? "form_last-step" : ""} `}
                 onSubmit={handleSubmit}
                 action=""
             >
                 {step}
 
-                <img className='form__img' src={spangebob} />
+                { !isLastStep && <img className='form__img' src={spangebob} />}
 
                 <div className='form__btn-wrapper'>
                     <button type="button" className='form__btn form__btn_close'>
@@ -96,7 +127,7 @@ export function Form() {
                         </button>
                     )}
                     {isLastStep ? (
-                        <button type="submit">submit</button>
+                        <button type="submit" className='form__btn'>Опубликовать</button>
                     ) : (
                         <button type="button" onClick={handleNextStep} className='form__btn'>
                             Продолжить
