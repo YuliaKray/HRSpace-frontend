@@ -61,7 +61,7 @@ export function RecruitersRequirementsForm({ rating, completed_orders, recruiter
                 <li>
                     {/* <label htmlFor="city-select">Ваш город</label> */}
                     <select onChange={e =>  updateFields({ rating: e.target.value })} defaultValue={rating} name="rating" id="rating" className="form__input-text form__input-text_small">
-                        <option value="" disabled>Рейтинг</option>
+                        <option value="rating" disabled>Рейтинг</option>
                         <option value="4.9">4,9 и выше</option>
                         <option value="4.5">4,5 и выше</option>
                         <option value="4">4 и выше</option>
@@ -72,7 +72,7 @@ export function RecruitersRequirementsForm({ rating, completed_orders, recruiter
                 {/*Закрытые заявки*/}
                     {/* <label htmlFor="city-select">Ваш город</label> */}
                     <select id="experience" onChange={e => updateFields({ completed_orders: e.target.value})} defaultValue={completed_orders} name="completed_orders" className="form__input-text form__input-text_small">
-                        <option value="" disabled>Закрытые заявки</option>
+                        <option value="completed_orders" disabled>Закрытые заявки</option>
                         <option value="500">от 500</option>
                         <option value="100">от 100</option>
                         <option value="50">от 50</option>
@@ -83,7 +83,7 @@ export function RecruitersRequirementsForm({ rating, completed_orders, recruiter
                 {/*Опыт*/}
                     {/* <label htmlFor="city-select">Ваш город</label> */}
                     <select name="recruiters_experience" defaultValue={recruiters_experience} onChange={e => updateFields({ recruiters_experience: e.target.value})} id="recruiters_experience" className="form__input-text form__input-text_small">
-                        <option value="" disabled>Опыт</option>
+                        <option value="recruiters_experience" disabled>Опыт</option>
                         <option value="6+">более 6 лет</option>
                         <option value="from3to6">от 3 до 6 лет</option>
                         <option value="from1to3">от 1 года до 3 лет</option>
@@ -94,7 +94,7 @@ export function RecruitersRequirementsForm({ rating, completed_orders, recruiter
                 {/*отвечает на сообщение*/}
                     {/* <label htmlFor="city-select">Ваш город</label> */}
                     <select name="respond_speed"id="respond_speed" defaultValue={respond_speed} onChange={e => updateFields({ respond_speed: e.target.value})} className="form__input-text form__input-text_small">
-                        <option value="" disabled>отвечает на сообщение</option>
+                        <option value="respond_speed" disabled>отвечает на сообщение</option>
                         <option value="30">в течение 30 мин</option>
                         <option value="120">в течение 2 часов</option>
                         <option value="1440">в течение дня</option>
@@ -103,7 +103,7 @@ export function RecruitersRequirementsForm({ rating, completed_orders, recruiter
                 {/*средняя скорость закрытия заявки*/}
                     {/* <label htmlFor="city-select">Ваш город</label> */}
                     <select name="fulfillment_speed" id="fulfillment_speed" onChange={e => updateFields({ fulfillment_speed: e.target.value})} defaultValue={fulfillment_speed} className="form__input-text form__input-text_small">
-                        <option value="" disabled>средняя скорость закрытия заявки</option>
+                        <option value="fulfillment_speed" disabled>средняя скорость закрытия заявки</option>
                         <option value="fast">быстро, менее недели</option>
                         <option value="standart">средняя, до трех недель</option>
                         <option value="notApplicable">не имеет значение</option>
@@ -130,7 +130,7 @@ export function RecruitersRequirementsForm({ rating, completed_orders, recruiter
 
                         <div className="form__checkbox-wrapper">
                             <input type="checkbox" name="recruiter_responsibilities" checked={recruiter_responsibilities.includes('interview_organizing')} id="interview_organizing" value="interview_organizing" onChange={handexCheckboxChange} className='form__checkbox' />
-                            <label htmlFor="interview_organizin" className='form__box-title'>Организация собеседований с заказчиком, синхронизация по времени заказчика и соискателя</label>
+                            <label htmlFor="interview_organizing" className='form__box-title'>Организация собеседований с заказчиком, синхронизация по времени заказчика и соискателя</label>
                         </div>
 
                         <div className="form__checkbox-wrapper">
@@ -149,7 +149,7 @@ export function RecruitersRequirementsForm({ rating, completed_orders, recruiter
                         </div>
 
                         <div className="form__checkbox-wrapper">
-                            <input type="checkbox" name="recruiter_responsibilities" checked={recruiter_responsibilities.includes('sending_offer')} id="sending_offer" onChange={handexCheckboxChange} className='form__checkbox' />
+                            <input type="checkbox" name="recruiter_responsibilities" checked={recruiter_responsibilities.includes('sending_offer')} id="sending_offer" value='sending_offer' onChange={handexCheckboxChange} className='form__checkbox' />
                             <label htmlFor="sending_offer" className='form__box-title'>Отправка кандидату приглашения на работу</label>
                         </div>
 
@@ -182,7 +182,7 @@ export function RecruitersRequirementsForm({ rating, completed_orders, recruiter
                         </div>
 
                         <div className="form__radio-wrapper">
-                            <input type="radio" name="candidate_resume_form" id="withinWeek" checked={candidate_resume_form.includes('with_pre_interview')} onChange={e => handexCheckboxChange(e)} value='with_pre_interview' className='form__radio' />
+                            <input type="radio" name="candidate_resume_form" id="with_pre_interview" checked={candidate_resume_form.includes('with_pre_interview')} onChange={e => handexCheckboxChange(e)} value='with_pre_interview' className='form__radio' />
                             <label htmlFor="with_pre_interview" className='form__box-title'>Резюме кандидатов, с которыми проведено интервью, с комментариями по кандидату</label>
                         </div>
 

@@ -129,17 +129,17 @@ export function GeneralInfoForm({ name, title, location, startDate, lowestSalary
 
                         <div className="form__radio-wrapper">
                             <input type="checkbox" name="startDate" id="withinWeek" checked={startDate.includes(2)} onChange={e => handexCheckboxChange(e)} value="2" className='form__checkbox' />
-                            <label htmlFor="startTommorow" className='form__box-title'>В течение недели</label>
+                            <label htmlFor="withinWeek" className='form__box-title'>В течение недели</label>
                         </div>
 
                         <div className="form__radio-wrapper">
                             <input type="checkbox" name="startDate" id="withinMonth" checked={startDate.includes(3)} onChange={e => handexCheckboxChange(e)} value="3" className='form__checkbox' />
-                            <label htmlFor="startTommorow" className='form__box-title'>В течение месяца</label>
+                            <label htmlFor="withinMonth" className='form__box-title'>В течение месяца</label>
                         </div>
 
                         <div className="form__radio-wrapper">
                             <input type="checkbox" name="startDate" id="nuRush" checked={startDate.includes(4)} onChange={e => handexCheckboxChange(e)} value="4" className='form__checkbox' />
-                            <label htmlFor="startTommorow" className='form__box-title'>Не спешу с поиском</label>
+                            <label htmlFor="nuRush" className='form__box-title'>Не спешу с поиском</label>
                         </div>
 
                     </fieldset>

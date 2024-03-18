@@ -102,7 +102,7 @@ export function WorkingConditionsForm({ employmentType, workingSchedule, working
                     </div>
                     <div className="form__checkbox-wrapper">
                         <input type="checkbox" name="workingSchedule" checked={workingSchedule.includes('part-time')} id="part-time" value="part-time" onChange={handexCheckboxChange} className='form__checkbox' />
-                        <label htmlFor="partTime" className='form__box-title'>Неполный день</label>
+                        <label htmlFor="part-time" className='form__box-title'>Неполный день</label>
                     </div>
 
                     <div className="form__checkbox-wrapper">

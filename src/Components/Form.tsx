@@ -5,7 +5,7 @@ import { GeneralInfoForm } from "../formComponents/GeneralInfoForm";
 import { WorkingConditionsForm } from '../formComponents/workingConditionsForm'
 import spangebob from '../images/SpongeBob_SquarePants_character.svg.png'
 import { EmployeeRequirementsForm } from '../formComponents/EmployeeRequirementsForm';
-import { RecruitersRequirementsForm } from '../formComponents/RecruitersRequirementsForm';
+import { RecruitersRequirementsForm } from '../formComponents/recruitersRequirementsForm';
 import { PaymentForm } from '../formComponents/PaymentForm';
 
 type FormData = {
@@ -23,11 +23,13 @@ type FormData = {
     agreementType: string[];
     benefits: string[];
     other: string;
-    gender: string[];
-    minimum_age: number;
-    maximum_age: number;
+    // gender: string[];
+    // minimum_age: number;
+    // maximum_age: number;
     education: string[];
     core_skills: string;
+    language_skills: number[];
+    language_level: string;
     driving_skills: string[];
     has_medical_sertificate: boolean;
     requirements_description: string;
@@ -62,11 +64,13 @@ const INITIAL_DATA = {
     agreementType: Array<string>(),
     benefits: Array<string>(),
     other: '',
-    gender: Array<string>(),
-    minimum_age: 14,
-    maximum_age: 99,
+    // gender: Array<string>(),
+    // minimum_age: 14,
+    // maximum_age: 99,
     education: Array<string>(),
     experience: Array<string>(),
+    language_skills:  Array<number>(),
+    language_level: "",
     core_skills: "",
     driving_skills: Array<string>(),
     has_medical_sertificate: false,
