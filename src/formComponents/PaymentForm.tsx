@@ -3,7 +3,7 @@ import "../Components/Form.scss"
 
 type Payment = {
     numberOfPayment: number;
-    paymentFormat: Array<string>
+    paymentFormat: string;
     // startDate: Array<number>;
 }
 
@@ -27,7 +27,7 @@ export function PaymentForm({ numberOfPayment, paymentFormat, updateFields, curr
                     <label htmlFor="numberOfPayment" className="form__subtitle">Вознаграждение за сотрудника, ₽ <span className="form__required">*</span></label>
                     <input
                         className="form__input-text form__input-text_small"
-                        type="numder"
+                        type="number"
                         id="numberOfPayment"
                         name="numberOfPayment"
                         onChange={(e) => updateFields({ numberOfPayment: parseInt(e.target.value) })}
@@ -41,7 +41,7 @@ export function PaymentForm({ numberOfPayment, paymentFormat, updateFields, curr
                     <fieldset className="form__fieldset-payment">
                     <div className="form__payment-wrapper">
                         <label htmlFor="prepayment" className='form__payment-text form__payment-label'>Выбрать</label>
-                        <input type="radio" name="paymentFormat" id="prepayment" value="prepayment" className='form__radio form__payment-radio' />
+                        <input type="radio" onChange={e => updateFields({paymentFormat: e.target.value })} checked={paymentFormat === 'prepayment'} name="paymentFormat" id="prepayment" value="prepayment" className='form__radio form__payment-radio' />
                         <h3 className="form__payment-title">100%</h3>
                         <p className="form__payment-text form__payment-text_span">Когда</p>
                         <p className="form__payment-text">оплачиваете рекрутеру 100% в день выхода сотрудника</p>
@@ -51,8 +51,8 @@ export function PaymentForm({ numberOfPayment, paymentFormat, updateFields, curr
                         <p className="form__payment-text ">Не менее 30 000 ₽</p>
                     </div>
                     <div className="form__payment-wrapper">
-                        <label htmlFor="higher" className='form__payment-text form__payment-label'>Выбрать</label>
-                        <input type="radio" name="paymentFormat" id="higher" value="higher" className='form__radio form__payment-radio' />
+                        <label htmlFor="50/50" className='form__payment-text form__payment-label'>Выбрать</label>
+                        <input type="radio" onChange={e => updateFields({paymentFormat: e.target.value })} checked={paymentFormat === '50/50'} name="paymentFormat" id="50/50" value="50/50" className='form__radio form__payment-radio' />
                         <h3 className="form__payment-title">50% + 50%</h3>
                         <p className="form__payment-text form__payment-text_span">Когда</p>
                         <p className="form__payment-text">50% за выход и 50% по окончанию гарантийного периода</p>
@@ -65,7 +65,7 @@ export function PaymentForm({ numberOfPayment, paymentFormat, updateFields, curr
 
                     <div className="form__payment-wrapper">
                         <label htmlFor="postpayment" className='form__payment-text form__payment-label'>Выбрать</label>
-                        <input type="radio" name="paymentFormat"  id="postpayment" value="postpayment" className='form__radio form__payment-radio' />
+                        <input type="radio" onChange={e => updateFields({paymentFormat: e.target.value })} checked={paymentFormat === 'postpayment'} name="paymentFormat"  id="postpayment" value="postpayment" className='form__radio form__payment-radio' />
                         <h3 className="form__payment-title">100%</h3>
                         <p className="form__payment-text form__payment-text_span">Когда</p>
                         <p className="form__payment-text">оплачиваете рекрутеру 100% по окончанию гарантийного периода</p>

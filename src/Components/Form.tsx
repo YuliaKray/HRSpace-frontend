@@ -2,7 +2,6 @@ import './Form.scss';
 import React, { useState } from "react";
 import { useMultistepForm } from "../assets/useMultistepForm";
 import { GeneralInfoForm } from "../formComponents/GeneralInfoForm";
-// import { WorkingConditionsForm } from '../formComponents/WorkingConditionsForm'
 import { WorkingConditionsForm } from '../formComponents/workingConditionsForm'
 import spangebob from '../images/SpongeBob_SquarePants_character.svg.png'
 import { EmployeeRequirementsForm } from '../formComponents/EmployeeRequirementsForm';
@@ -24,17 +23,26 @@ type FormData = {
     agreementType: string[];
     benefits: string[];
     other: string;
+    gender: string[];
+    minimum_age: number;
+    maximum_age: number;
     education: string[];
     core_skills: string;
     driving_skills: string[];
     has_medical_sertificate: boolean;
     requirements_description: string;
+    rating: string;
+    experience: string[];
+    completed_orders: string;
+    recruiters_experience: string;
+    respond_speed: string;
+    fulfillment_speed: string;
     recruiter_responsibilities: string[];
     description: string;
     candidate_resume_form: Array<string>;
     stop_list: string;
     numberOfPayment: number;
-    paymentFormat: Array<string>;
+    paymentFormat: string;
 
 
 };
@@ -54,18 +62,26 @@ const INITIAL_DATA = {
     agreementType: Array<string>(),
     benefits: Array<string>(),
     other: '',
+    gender: Array<string>(),
+    minimum_age: 14,
+    maximum_age: 99,
     education: Array<string>(),
     experience: Array<string>(),
     core_skills: "",
     driving_skills: Array<string>(),
     has_medical_sertificate: false,
     requirements_description: "",
+    rating: "",
+    completed_orders: "",
+    recruiters_experience: "",
+    respond_speed: "",
+    fulfillment_speed: "",
     recruiter_responsibilities: Array<string>(),
     description: "",
     candidate_resume_form: Array<string>(),
     stop_list: "",
     numberOfPayment: 30000,
-    paymentFormat: Array<string>(),
+    paymentFormat: '',
 
 };
 

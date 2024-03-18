@@ -61,8 +61,8 @@ export function WorkingConditionsForm({ employmentType, workingSchedule, working
                 <li className="form__box">
 
                     <p className='form__subtitle'>Тип занятости</p>
-                    <fieldset className="">
-                        <div>
+                    <fieldset className="form__box">
+                        <div className="form__box_type_radio">
                             <div className="form_radio_btn">
                                 <input type="radio" id="employmentType-1" name="employmentType" checked={employmentType === 1} onChange={e => updateFields({ employmentType: parseInt(e.target.value) })} value="1" />
                                 <label htmlFor="employmentType-1">Полная</label>
@@ -93,7 +93,7 @@ export function WorkingConditionsForm({ employmentType, workingSchedule, working
 
                 {/* график работы */}
                 <li className="form__box">
-                
+            
                     <p className='form__subtitle'>График работы</p>
                     <fieldset className="form__fieldset">
                     <div className="form__checkbox-wrapper">
@@ -127,7 +127,7 @@ export function WorkingConditionsForm({ employmentType, workingSchedule, working
                     <div className="form__checkbox-wrapper">
 
                         <input type="checkbox" name="workingSchedule" checked={workingSchedule.includes('shift')} id="shift" value="shift" onChange={handexCheckboxChange} className='form__checkbox' />
-                        <label htmlFor="shift" className='form__box-title'>Вахта</label>
+                        <label htmlFor="shift" className='form__box-title'>Вахтовый метод</label>
                     </div>
                 </fieldset>
                 </li>

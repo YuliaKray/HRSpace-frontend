@@ -33,8 +33,6 @@ export function GeneralInfoForm({ name, title, location, startDate, lowestSalary
     return (
         <>
             <h2 className="form__title">Шаг 1 из 5. Общая информация</h2>
-
-            {/* тут будут три карточки */}
             <Tooltips currentStepIndex={currentStepIndex} />
             {/* {console.log(currentStepIndex)} */}
             <ul className="form__wrapper">
@@ -157,7 +155,7 @@ export function GeneralInfoForm({ name, title, location, startDate, lowestSalary
                 <li>
                     <fieldset className="form__box">
                         <p className='form__subtitle'>Кол-во рекрутеров</p>
-                        <div>
+                        <div className="form__box_type_radio">
                             <div className="form_radio_btn">
                                 <input type="radio" id="recruitersQty-1" name="recruitersQty" checked={recruitersQty === 1} onChange={e => updateFields({ recruitersQty: parseInt(e.target.value) })} value="1" />
                                 <label htmlFor="recruitersQty-1">1</label>

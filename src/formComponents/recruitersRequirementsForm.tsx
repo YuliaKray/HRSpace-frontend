@@ -2,6 +2,11 @@ import { Tooltips } from "../Components/Tooltips/Tooltips"; //Компонент
 import "../Components/Form.scss"
 
 type RecruitersRequirements = {
+    rating: string;
+    completed_orders: string;
+    recruiters_experience: string;
+    respond_speed: string;
+    fulfillment_speed: string;
     recruiter_responsibilities: string[];
     // workingType: string;
     // agreementType: string[];
@@ -17,7 +22,7 @@ type RecruitersRequirementsFormProps = RecruitersRequirements & {
 } & { currentStepIndex: number }
 
 
-export function RecruitersRequirementsForm({ recruiter_responsibilities, description, candidate_resume_form, stop_list, updateFields, currentStepIndex }: RecruitersRequirementsFormProps) {
+export function RecruitersRequirementsForm({ rating, completed_orders, recruiters_experience, respond_speed, fulfillment_speed, recruiter_responsibilities, description, candidate_resume_form, stop_list, updateFields, currentStepIndex }: RecruitersRequirementsFormProps) {
 
     function handexCheckboxChange(e: React.ChangeEvent<HTMLInputElement>) {
         if (e.target.name === 'recruiter_responsibilities') {
@@ -55,20 +60,19 @@ export function RecruitersRequirementsForm({ recruiter_responsibilities, descrip
                 {/*Рейтинг*/}
                 <li>
                     {/* <label htmlFor="city-select">Ваш город</label> */}
-                    <select name="rating" id="rating" className="form__input-text form__input-text_small">
-                        <option value="">Рейтинг</option>
+                    <select onChange={e =>  updateFields({ rating: e.target.value })} defaultValue={rating} name="rating" id="rating" className="form__input-text form__input-text_small">
+                        <option value="" disabled>Рейтинг</option>
                         <option value="4.9">4,9 и выше</option>
                         <option value="4.5">4,5 и выше</option>
                         <option value="4">4 и выше</option>
                         <option value="3">3 и выше</option>
                         <option value="0">не имеет значение</option>
-                        
                     </select>
 
                 {/*Закрытые заявки*/}
                     {/* <label htmlFor="city-select">Ваш город</label> */}
-                    <select name="rating" id="rating" className="form__input-text form__input-text_small">
-                        <option value="" selected disabled>Закрытые заявки</option>
+                    <select id="experience" onChange={e => updateFields({ completed_orders: e.target.value})} defaultValue={completed_orders} name="completed_orders" className="form__input-text form__input-text_small">
+                        <option value="" disabled>Закрытые заявки</option>
                         <option value="500">от 500</option>
                         <option value="100">от 100</option>
                         <option value="50">от 50</option>
@@ -78,19 +82,19 @@ export function RecruitersRequirementsForm({ recruiter_responsibilities, descrip
 
                 {/*Опыт*/}
                     {/* <label htmlFor="city-select">Ваш город</label> */}
-                    <select name="experience" id="experience" className="form__input-text form__input-text_small">
-                        <option value="" selected disabled>Опыт</option>
-                        <option value="petersburg">более 6 лет</option>
-                        <option value="samara">от 3 до 6 лет</option>
-                        <option value="samara">от 1 года до 3 лет</option>
-                        <option value="perm">без опыта</option>
-                        <option value="novosibirsk">не имеет значение</option>
+                    <select name="recruiters_experience" defaultValue={recruiters_experience} onChange={e => updateFields({ recruiters_experience: e.target.value})} id="recruiters_experience" className="form__input-text form__input-text_small">
+                        <option value="" disabled>Опыт</option>
+                        <option value="6+">более 6 лет</option>
+                        <option value="from3to6">от 3 до 6 лет</option>
+                        <option value="from1to3">от 1 года до 3 лет</option>
+                        <option value="noExperience">без опыта</option>
+                        <option value="notAplicable">не имеет значение</option>
                     </select>
 
                 {/*отвечает на сообщение*/}
                     {/* <label htmlFor="city-select">Ваш город</label> */}
-                    <select name="rating" id="rating" className="form__input-text form__input-text_small">
-                        <option value="" selected disabled>отвечает на сообщение</option>
+                    <select name="respond_speed"id="respond_speed" defaultValue={respond_speed} onChange={e => updateFields({ respond_speed: e.target.value})} className="form__input-text form__input-text_small">
+                        <option value="" disabled>отвечает на сообщение</option>
                         <option value="30">в течение 30 мин</option>
                         <option value="120">в течение 2 часов</option>
                         <option value="1440">в течение дня</option>
@@ -98,11 +102,11 @@ export function RecruitersRequirementsForm({ recruiter_responsibilities, descrip
 
                 {/*средняя скорость закрытия заявки*/}
                     {/* <label htmlFor="city-select">Ваш город</label> */}
-                    <select name="rating" id="rating" className="form__input-text form__input-text_small">
-                        <option value="" selected disabled>средняя скорость закрытия заявки</option>
-                        <option value="petersburg">быстро, менее недели</option>
-                        <option value="samara">средняя, до трех недель</option>
-                        <option value="novosibirsk">не имеет значение</option>
+                    <select name="fulfillment_speed" id="fulfillment_speed" onChange={e => updateFields({ fulfillment_speed: e.target.value})} defaultValue={fulfillment_speed} className="form__input-text form__input-text_small">
+                        <option value="" disabled>средняя скорость закрытия заявки</option>
+                        <option value="fast">быстро, менее недели</option>
+                        <option value="standart">средняя, до трех недель</option>
+                        <option value="notApplicable">не имеет значение</option>
                     </select>
                 </li>
 
