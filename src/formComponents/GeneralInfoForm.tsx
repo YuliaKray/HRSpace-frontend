@@ -17,9 +17,13 @@ type GeneralInfo = {
 
 type GeneralInfoFormProps = GeneralInfo & {
     updateFields: (fields: Partial<GeneralInfo>) => void;
-} & { currentStepIndex: number }
+} & { currentStepIndex: number } & {
+    getProfession: () => void
+} & {
+    openModal: () => void
+};
 
-export function GeneralInfoForm({ name, title, location, startDate, lowestSalary, highestSalary, numberOfEmployees, recruitersQty, updateFields, currentStepIndex }: GeneralInfoFormProps) {
+export function GeneralInfoForm({ name, title, location, startDate, lowestSalary, highestSalary, numberOfEmployees, recruitersQty, updateFields, currentStepIndex, getProfession, openModal }: GeneralInfoFormProps) {
 
     function handexCheckboxChange(e: React.ChangeEvent<HTMLInputElement>) {
         if (e.target.checked) {
@@ -28,6 +32,12 @@ export function GeneralInfoForm({ name, title, location, startDate, lowestSalary
         else {
             updateFields({ startDate: startDate.filter((item) => item !== parseInt(e.target.value)) })
         }
+    }
+
+    
+    function handleButtonClick() {
+        getProfession();
+        openModal();
     }
 
     return (
@@ -51,7 +61,7 @@ export function GeneralInfoForm({ name, title, location, startDate, lowestSalary
                 </li>
                 <li className="form__box">
                     <p className="form__subtitle">Профессия <span className="form__required">*</span></p>
-                    <button className="form__btn-popup" type="button">Выберите из списка</button>
+                    <button className="form__btn-popup" type="button" onClick={handleButtonClick}>Выберите из списка</button>
                     {/* Закоментировала этот кусок, потому что тут ссылка открывет модальное окно
 
                     <label htmlFor="title" className="form__subtitle">Профессия <span className="form__required">*</span></label>
@@ -65,7 +75,7 @@ export function GeneralInfoForm({ name, title, location, startDate, lowestSalary
                     /> */}
                 </li>
                 <li className="form__box">
-                    <p className="form__subtitle">Профессия <span className="form__required">*</span></p>
+                    <p className="form__subtitle">Город <span className="form__required">*</span></p>
                     <button className="form__btn-popup" type="button">Выберите из списка</button>
 
                     {/* Закоментировала этот кусок, потому что тут ссылка открывет модальное окно
@@ -99,7 +109,7 @@ export function GeneralInfoForm({ name, title, location, startDate, lowestSalary
                             id="salary"
                             name="salary"
                             placeholder="до"
-                            onChange={(e) => updateFields({ lowestSalary: parseInt(e.target.value) })}
+                            onChange={(e) => updateFields({ highestSalary: parseInt(e.target.value) })}
                             value={highestSalary}
                             required
                         />
@@ -119,17 +129,17 @@ export function GeneralInfoForm({ name, title, location, startDate, lowestSalary
                 </li>
 
                 <li className="form__box">
-                    <p className='form__subtitle'>Когда нужно начать работу</p>
+                    <p className='form__subtitle'>Выход на работу</p>
                     <fieldset className="form__fieldset" >
 
                         <div className="form__radio-wrapper">
                             <input type="checkbox" name="startDate" id="startTommorow" checked={startDate.includes(1)} onChange={e => handexCheckboxChange(e)} value="1" className='form__checkbox' />
-                            <label htmlFor="startTommorow" className='form__box-title'>Сможет приступить завтра</label>
+                            <label htmlFor="startTommorow" className='form__box-title'>В течение 1-3 дней</label>
                         </div>
 
                         <div className="form__radio-wrapper">
-                            <input type="checkbox" name="startDate" id="withinWeek" checked={startDate.includes(2)} onChange={e => handexCheckboxChange(e)} value="2" className='form__checkbox' />
-                            <label htmlFor="withinWeek" className='form__box-title'>В течение недели</label>
+                            <input type="checkbox" name="startDate" id="withinTwoWeeks" checked={startDate.includes(2)} onChange={e => handexCheckboxChange(e)} value="2" className='form__checkbox' />
+                            <label htmlFor="withinTwoWeeks" className='form__box-title'>В течение 2 недель</label>
                         </div>
 
                         <div className="form__radio-wrapper">
@@ -138,9 +148,15 @@ export function GeneralInfoForm({ name, title, location, startDate, lowestSalary
                         </div>
 
                         <div className="form__radio-wrapper">
-                            <input type="checkbox" name="startDate" id="nuRush" checked={startDate.includes(4)} onChange={e => handexCheckboxChange(e)} value="4" className='form__checkbox' />
+                            <input type="checkbox" name="startDate" id="withinThreeMonth" checked={startDate.includes(4)} onChange={e => handexCheckboxChange(e)} value="4" className='form__checkbox' />
+                            <label htmlFor="withinThreeMonth" className='form__box-title'>В течение 3 месяцев</label>
+                        </div>
+
+                        <div className="form__radio-wrapper">
+                            <input type="checkbox" name="startDate" id="nuRush" checked={startDate.includes(5)} onChange={e => handexCheckboxChange(e)} value="5" className='form__checkbox' />
                             <label htmlFor="nuRush" className='form__box-title'>Не спешу с поиском</label>
                         </div>
+
 
                     </fieldset>
                 </li>

@@ -10,7 +10,7 @@ type EmployeeRequirements = {
     education: string[];
     experience: string[];
     language_skills: number[];
-    language_level: string;
+    language_level: string[];
     core_skills: string;
     driving_skills: string[];
     has_medical_sertificate: boolean;

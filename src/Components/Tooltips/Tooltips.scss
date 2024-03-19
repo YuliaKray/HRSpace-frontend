@@ -5,7 +5,7 @@
 }
 
 .tooltip {
-    background-color: #ccd6d6;
+    background-color: #e0e8fd;
     border-radius: 20px;
     padding: 20px;
     max-width: 405px;
@@ -21,7 +21,7 @@
         object-fit: contain;
         object-position: center;
         border-radius: 8px;
-        background-color: #aab0b0;
+        background-color: transparent;
     }
 
     &__title {
@@ -32,6 +32,7 @@
         font-weight: 700;
         font-size: 16px;
         line-height: 140%;
+        align-self: center;
     }
 
     &__text {

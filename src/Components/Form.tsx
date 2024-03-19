@@ -1,12 +1,22 @@
 import './Form.scss';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useMultistepForm } from "../assets/useMultistepForm";
 import { GeneralInfoForm } from "../formComponents/GeneralInfoForm";
 import { WorkingConditionsForm } from '../formComponents/workingConditionsForm'
 import spangebob from '../images/SpongeBob_SquarePants_character.svg.png'
+import step1 from '../images/step1.png'
+import step2 from '../images/step2.png'
 import { EmployeeRequirementsForm } from '../formComponents/EmployeeRequirementsForm';
 import { RecruitersRequirementsForm } from '../formComponents/recruitersRequirementsForm';
 import { PaymentForm } from '../formComponents/PaymentForm';
+
+type FormProps = {
+    langData: number[]
+} & {
+    getProfession: () => void
+} & {
+    openModal: () => void
+};
 
 type FormData = {
     name: string;
@@ -29,7 +39,7 @@ type FormData = {
     education: string[];
     core_skills: string;
     language_skills: number[];
-    language_level: string;
+    language_level: string[];
     driving_skills: string[];
     has_medical_sertificate: boolean;
     requirements_description: string;
@@ -70,7 +80,7 @@ const INITIAL_DATA = {
     education: Array<string>(),
     experience: Array<string>(),
     language_skills:  Array<number>(),
-    language_level: "",
+    language_level: Array<string>(),
     core_skills: "",
     driving_skills: Array<string>(),
     has_medical_sertificate: false,
@@ -89,14 +99,13 @@ const INITIAL_DATA = {
 
 };
 
-export function Form() {
+export function Form({langData, getProfession, openModal}: FormProps) {
 
-    const [currentIndex, setCurrentIndex] = useState(1); //попытка сделать чтобы вспывашкив начале сами менялись
+    const [currentIndex, setCurrentIndex] = useState(0); //попытка сделать чтобы вспывашкив начале сами менялись
     const [formData, setFormData] = useState(INITIAL_DATA);
 
     function updateFields(fields: Partial<FormData>) {
         setFormData((prev) => ({ ...prev, ...fields }));
-        // setCurrentIndex(currentStepIndex);
     }
 
     const {
@@ -107,12 +116,17 @@ export function Form() {
         isFirstStep,
         isLastStep,
     } = useMultistepForm([
-        <GeneralInfoForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex} />,
+        <GeneralInfoForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex} getProfession={getProfession} openModal={openModal}/>,
         <WorkingConditionsForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex} />,
         <EmployeeRequirementsForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex} />,
         <RecruitersRequirementsForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex} />,
         <PaymentForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex} />,
     ]);
+    
+    useEffect(() => {
+        setCurrentIndex(currentStepIndex)
+    }, [step])
+
 
     function handleNextStep(e: React.FormEvent) {
         e.preventDefault();
@@ -127,6 +141,24 @@ export function Form() {
         console.log(formData)
     }
 
+    function changeImg() {
+        if (currentStepIndex === 0) {
+            const imgSrc = step1
+            return imgSrc
+
+        } 
+        else if (currentStepIndex === 1) {
+
+            const imgSrc = step2
+            return imgSrc
+            
+        } else {
+            const imgSrc = spangebob
+            return imgSrc
+        }
+
+    }
+
 
     return (
         <>
@@ -137,7 +169,7 @@ export function Form() {
             >
                 {step}
 
-                { !isLastStep && <img className='form__img' src={spangebob} />}
+                { !isLastStep && <img className='form__img' src={changeImg()} />}
 
                 <div className='form__btn-wrapper'>
                     <button type="button" className='form__btn form__btn_close'>

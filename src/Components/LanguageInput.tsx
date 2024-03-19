@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 type LanguageType = {
   language_skills: number[];
-  language_level: string;
+  language_level: string[];
 }
 
 type LanguageTypeProps = LanguageType & {
@@ -66,11 +66,15 @@ export function LanguageInput({ language_skills, language_level, updateFields }:
 
       </select >
 
-      <select id="language_level" name="language_level" defaultValue={language_level} disabled={disabledInput} onChange={e => updateFields({ language_level: e.target.value })} className="form__input-text form__input-text_small">
+      <select id="language_level" name="language_level" defaultValue={language_level} disabled={disabledInput} 
+      onChange={e => updateFields({ language_level: [...language_level, e.target.value] })} className="form__input-text form__input-text_small">
         <option value="language_level" disabled>Выберите уровень</option>
-        <option value="A1">Начальный</option>
-        <option value="A2">Средней</option>
-        <option value="B1">Сильнее средней</option>
+        <option value="A1">A1 — Начальный</option>
+        <option value="A2">A2 — Элементарный</option>
+        <option value="B1">B1 — Средний</option>
+        <option value="B2">B2 — Средне-продвинутый</option>
+        <option value="C1">C1 — Продвинутый</option>
+        <option value="C2">C2 — В совершенстве</option>
       </select>
       </div>
     </>

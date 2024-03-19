@@ -154,7 +154,7 @@ export function WorkingConditionsForm({ employmentType, workingSchedule, working
                             name="workingType"
                             id="remote"
                             value="remote" />
-                        <label htmlFor="remote">Удалёння</label>
+                        <label htmlFor="remote">Удалённая</label>
                     </div>
 
                     <div className="form_radio_btn">

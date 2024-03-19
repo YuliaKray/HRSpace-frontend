@@ -1,7 +1,7 @@
-import icon from '../../images/free-icon-font-flame-3917741.svg'
+import icon from '../../images/subway_tick.svg'
 import './Tooltips.scss';
 import { tooltip_1, tooltip_2, tooltip_3, tooltip_4, tooltip_5, tooltip_6, tooltip_7, tooltip_8, tooltip_9 } from '../../assets/constants';
-import { JSXElementConstructor, ReactElement, ReactNode } from 'react';
+import { JSXElementConstructor, ReactElement, ReactNode, useEffect, useState } from 'react';
 
 type TooltipsProps = {
     currentStepIndex: number
@@ -30,7 +30,8 @@ export function Tooltips({ currentStepIndex }: TooltipsProps) {
     }
 
     function renderTooltip() {
-        // console.log(currentStepIndex === 1)
+        // console.log(currentStepIndex)
+
         const firstStep = [tooltip_1, tooltip_2, tooltip_3];
         const secondStep = [tooltip_4];
         const thirdStep = [tooltip_5];
@@ -38,30 +39,27 @@ export function Tooltips({ currentStepIndex }: TooltipsProps) {
         const fivesStep = [tooltip_7, tooltip_8, tooltip_9];
 
 
-        if (currentStepIndex === 1) {
-            // console.log(currentStepIndex)
+        if (currentStepIndex === 0) {
             const firstStepElement = firstStep.map((item) => {
                 return getTooltip(item)
             })
             return firstStepElement
 
-        } else if (currentStepIndex === 2) {
-            // console.log(currentStepIndex)
+        } else if (currentStepIndex === 1) {
 
             const secondStepElement = secondStep.map((item) => {
                 return getTooltip(item)
             })
             return secondStepElement
         
-        } else if (currentStepIndex === 3) {
-            // console.log(currentStepIndex)
+        } else if (currentStepIndex === 2) {
 
             const thirdStepElement = thirdStep.map((item) => {
                 return getTooltip(item)
             })
             return thirdStepElement
 
-        } else if (currentStepIndex === 4) {
+        } else if (currentStepIndex === 3) {
             
             const foursStepElement = foursStep.map((item) => {
                 return getTooltip(item)
@@ -78,14 +76,7 @@ export function Tooltips({ currentStepIndex }: TooltipsProps) {
 
     return (
         <div className="tooltips">
-            {/* {console.log(currentStepIndex)} */}
             {renderTooltip()}
-            {/* {getTooltip(tooltip_1)} */}
-            {/* <article className='tooltip'>
-                <img className='tooltip__img' src={icon} alt='исонка' />
-                <h3 className='tooltip__title'>Поиск новой профессии в каталоге стал легче</h3>
-                <p className='tooltip__text'>Мы обновили каталог профессий: сократили список позиций и сделали привязку к профобластям более логичной </p>
-            </article> */}
         </div>
     )
 }
