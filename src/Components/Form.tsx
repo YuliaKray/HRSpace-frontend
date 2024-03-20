@@ -6,24 +6,48 @@ import { WorkingConditionsForm } from '../formComponents/workingConditionsForm'
 import spangebob from '../images/SpongeBob_SquarePants_character.svg.png'
 import step1 from '../images/step1.png'
 import step2 from '../images/step2.png'
+import step4 from '../images/step4.png'
 import { EmployeeRequirementsForm } from '../formComponents/EmployeeRequirementsForm';
 import { RecruitersRequirementsForm } from '../formComponents/recruitersRequirementsForm';
 import { PaymentForm } from '../formComponents/PaymentForm';
 import { Modal } from './Modal/Modal';
 import { SubmitModal } from './SubmitModal/SubmitModal';
+import { FormModal } from './FormModal/FormModal';
 
 type FormProps = {
-    langData: number[]
+    langData: {
+        id: number;
+        name?: string;
+        title?: string
+    }[],
+    professions: {
+        id: number;
+        name?: string;
+        title?: string
+    }[],
+    city: {
+        id: number;
+        name?: string;
+        title?: string
+    }[],
+    citizenships: {
+        id: number;
+        name?: string;
+        title?: string
+    }[],
+
 } & {
     getProfession: () => void
 } & {
-    openModal: () => void
+    getCity: () => void
+} & {
+    getCitizenship: () => void
 };
 
 type FormData = {
     name: string;
-    title: string;
-    location: string;
+    profession: number;
+    location: number;
     lowestSalary: number;
     highestSalary: number;
     numberOfEmployees: number;
@@ -44,6 +68,7 @@ type FormData = {
     language_level: string[];
     driving_skills: string[];
     has_medical_sertificate: boolean;
+    citizenship: number;
     requirements_description: string;
     rating: string;
     experience: string[];
@@ -63,8 +88,8 @@ type FormData = {
 
 const INITIAL_DATA = {
     name: "",
-    title: "",
-    location: "",
+    profession: 0,
+    location: 0,
     lowestSalary: 500,
     highestSalary: 1000,
     numberOfEmployees: 1,
@@ -81,11 +106,12 @@ const INITIAL_DATA = {
     // maximum_age: 99,
     education: Array<string>(),
     experience: Array<string>(),
-    language_skills:  Array<number>(),
+    language_skills: Array<number>(),
     language_level: Array<string>(),
     core_skills: "",
     driving_skills: Array<string>(),
     has_medical_sertificate: false,
+    citizenship: 0,
     requirements_description: "",
     rating: "",
     completed_orders: "",
@@ -101,22 +127,39 @@ const INITIAL_DATA = {
 
 };
 
-export function Form({langData, getProfession}: FormProps) {
-const [isModalOpen, setIsModalOpen] = useState(true);
+export function Form({ langData, getProfession, professions, city, getCity, citizenships, getCitizenship }: FormProps) {
+    const [isModalOpen, setIsModalOpen] = useState(true);
+    const [isProfessionModalOpen, setisProfessionModalOpen] = useState(false);
+    const [isCityModalOpen, setisCityModalOpen] = useState(false);
+    const [isCitizenshipModalOpen, setisCitizenshipModalOpen] = useState(false);
 
 
-function openModal() {
-    setIsModalOpen(true);
-  }
 
-  function closeModal() {
-    setIsModalOpen(false);
-  }
+    function openModal() {
+        setIsModalOpen(true);
+    }
 
-  function submitForm(){
-    console.log(INITIAL_DATA);
-    closeModal()
-  }
+    function closeModal() {
+        setIsModalOpen(false);
+    }
+
+    function submitForm() {
+        console.log(INITIAL_DATA);
+        closeModal()
+    }
+
+    function handleProfessionOpen() {
+        setisProfessionModalOpen(!isProfessionModalOpen);
+    }
+
+    function handleCityOpen() {
+        setisCityModalOpen(!isCityModalOpen);
+    }
+
+    function handleCitizenshipOpen() {
+        setisCitizenshipModalOpen(!isCitizenshipModalOpen);
+    }
+
 
     const [currentIndex, setCurrentIndex] = useState(0); //попытка сделать чтобы вспывашкив начале сами менялись
     const [formData, setFormData] = useState(INITIAL_DATA);
@@ -133,13 +176,13 @@ function openModal() {
         isFirstStep,
         isLastStep,
     } = useMultistepForm([
-        <GeneralInfoForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex} getProfession={getProfession} openModal={openModal}/>,
+        <GeneralInfoForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex} getProfession={getProfession} handleProfessionOpen={handleProfessionOpen} handleCityOpen={handleCityOpen} getCity={getCity}/>,
         <WorkingConditionsForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex} />,
-        <EmployeeRequirementsForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex} />,
+        <EmployeeRequirementsForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex} getCitizenship={getCitizenship} handleCitizenshipOpen={handleCitizenshipOpen}/>,
         <RecruitersRequirementsForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex} />,
         <PaymentForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex} />,
     ]);
-    
+
     useEffect(() => {
         setCurrentIndex(currentStepIndex)
     }, [step])
@@ -163,12 +206,17 @@ function openModal() {
             const imgSrc = step1
             return imgSrc
 
-        } 
+        }
         else if (currentStepIndex === 1) {
 
             const imgSrc = step2
             return imgSrc
-            
+
+        } else if (currentStepIndex === 3) {
+
+            const imgSrc = step4
+            return imgSrc
+
         } else {
             const imgSrc = spangebob
             return imgSrc
@@ -179,12 +227,22 @@ function openModal() {
 
     return (
         <>
-        <Modal modalOpen={isModalOpen} closeModal={closeModal}>
-          {/* <FormModal 
-          profession={profession}
-          /> */}
-          <SubmitModal closeModal={closeModal} submitForm={submitForm}/>
-        </Modal>
+            <Modal modalOpen={isModalOpen || isProfessionModalOpen || isCityModalOpen || isCitizenshipModalOpen} closeModal={closeModal}>
+                {/* Я влезла сюда, но вроде написанная логика для модалки сабмита не нарушилась */}
+                {isProfessionModalOpen || isCityModalOpen || isCitizenshipModalOpen ? 
+                <FormModal {...formData} updateFields={updateFields}
+                    professions={professions}
+                    city={city}
+                    citizenships={citizenships}
+                    isProfessionModalOpen={isProfessionModalOpen}
+                    isCityModalOpen={isCityModalOpen}
+                    isCitizenshipModalOpen={isCitizenshipModalOpen}
+                    handleProfessionOpen={handleProfessionOpen}
+                    handleCityOpen={handleCityOpen}
+                    handleCitizenshipOpen={handleCitizenshipOpen}
+                /> :
+                <SubmitModal closeModal={closeModal} submitForm={submitForm} />}
+            </Modal>
             <form
                 className={`form ${isLastStep ? "form_last-step" : ""} `}
                 onSubmit={handleSubmit}
@@ -192,7 +250,7 @@ function openModal() {
             >
                 {step}
 
-                { !isLastStep && <img className='form__img' src={changeImg()} />}
+                {!isLastStep && <img className='form__img' src={changeImg()} />}
 
                 <div className='form__btn-wrapper'>
                     <button type="button" className='form__btn form__btn_close'>

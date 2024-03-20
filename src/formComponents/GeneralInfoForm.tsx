@@ -1,13 +1,9 @@
-import { SelectedItemContainer } from "../Components/Checkbox/SelectedItemContainer";
-import { firstWorkDay } from "../assets/constants"; //Это константы для переиспользования компонентов
 import { Tooltips } from "../Components/Tooltips/Tooltips"; //Компонент начальных зеленых карточек 
 import "./GeneralInfoForm.scss";
 import "../Components/Form.scss"
 
 type GeneralInfo = {
     name: string;
-    title: string;
-    location: string;
     lowestSalary: number;
     highestSalary: number;
     numberOfEmployees: number;
@@ -20,10 +16,14 @@ type GeneralInfoFormProps = GeneralInfo & {
 } & { currentStepIndex: number } & {
     getProfession: () => void
 } & {
-    openModal: () => void
-};
+    getCity: () => void
+} & {
+    handleProfessionOpen: () => void
+} & {
+    handleCityOpen: () => void
+}
 
-export function GeneralInfoForm({ name, title, location, startDate, lowestSalary, highestSalary, numberOfEmployees, recruitersQty, updateFields, currentStepIndex, getProfession, openModal }: GeneralInfoFormProps) {
+export function GeneralInfoForm({ name, startDate, lowestSalary, highestSalary, numberOfEmployees, recruitersQty, updateFields, currentStepIndex, getProfession, handleProfessionOpen, handleCityOpen, getCity }: GeneralInfoFormProps) {
 
     function handexCheckboxChange(e: React.ChangeEvent<HTMLInputElement>) {
         if (e.target.checked) {
@@ -35,9 +35,14 @@ export function GeneralInfoForm({ name, title, location, startDate, lowestSalary
     }
 
     
-    function handleButtonClick() {
+    function handleButtonProfessionClick() {
         getProfession();
-        openModal();
+        handleProfessionOpen();
+    }
+
+    function handleButtonCityClick() {
+        getCity();
+        handleCityOpen();
     }
 
     return (
@@ -61,7 +66,7 @@ export function GeneralInfoForm({ name, title, location, startDate, lowestSalary
                 </li>
                 <li className="form__box">
                     <p className="form__subtitle">Профессия <span className="form__required">*</span></p>
-                    <button className="form__btn-popup" type="button" onClick={handleButtonClick}>Выберите из списка</button>
+                    <button className="form__btn-popup" type="button" onClick={handleButtonProfessionClick}>Выберите из списка</button>
                     {/* Закоментировала этот кусок, потому что тут ссылка открывет модальное окно
 
                     <label htmlFor="title" className="form__subtitle">Профессия <span className="form__required">*</span></label>
@@ -76,7 +81,7 @@ export function GeneralInfoForm({ name, title, location, startDate, lowestSalary
                 </li>
                 <li className="form__box">
                     <p className="form__subtitle">Город <span className="form__required">*</span></p>
-                    <button className="form__btn-popup" type="button">Выберите из списка</button>
+                    <button className="form__btn-popup" type="button" onClick={handleButtonCityClick}>Выберите из списка</button>
 
                     {/* Закоментировала этот кусок, потому что тут ссылка открывет модальное окно
 

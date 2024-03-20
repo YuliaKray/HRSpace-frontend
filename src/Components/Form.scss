@@ -47,6 +47,7 @@
         display: grid;
         grid-template-columns: 195px minmax(auto, 508px);
         justify-content: flex-start;
+
         &_type_radio{
             display: flex;
             flex-direction: row;
@@ -201,6 +202,10 @@
         line-height: 150%;
         text-align: center;
         border: none;
+        
+        &:disabled{
+            cursor: default;
+        }
 
         &_close {
             background-color: transparent;

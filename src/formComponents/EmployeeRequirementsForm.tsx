@@ -19,11 +19,15 @@ type EmployeeRequirements = {
 
 type EmployeeRequirementsFormProps = EmployeeRequirements & {
     updateFields: (fields: Partial<EmployeeRequirements>) => void;
-} & { currentStepIndex: number }
+} & { currentStepIndex: number } & {
+    getCitizenship: () => void
+} & {
+    handleCitizenshipOpen: () => void
+}
 
 export function EmployeeRequirementsForm({ 
     // gender,  minimum_age, maximum_age, 
-    education, experience, language_skills, language_level, core_skills, driving_skills, has_medical_sertificate, requirements_description, updateFields, currentStepIndex }: EmployeeRequirementsFormProps) {
+    education, experience, language_skills, language_level, core_skills, driving_skills, has_medical_sertificate, requirements_description, updateFields, currentStepIndex, getCitizenship, handleCitizenshipOpen }: EmployeeRequirementsFormProps) {
 
     const [language, setLanguage] = useState<JSX.Element[]>([]); // стейт для добавления новых инпутов выбора языка в разметку
 
@@ -64,6 +68,12 @@ export function EmployeeRequirementsForm({
     function addLanguageInput() {
         setLanguage([...language, <LanguageInput language_skills={language_skills} language_level={language_level} updateFields={updateFields}/>])
     }
+
+    function handleButtonCitizenshipClick() {
+        getCitizenship();
+        handleCitizenshipOpen();
+    }
+
 
 
     return (
@@ -225,7 +235,7 @@ export function EmployeeRequirementsForm({
                 {/*Гражданство */}
                 <li className="form__box">
                     <p className="form__subtitle">Гражданство </p>
-                    <button className="form__btn-popup" type="button">Выберите из списка</button>
+                    <button className="form__btn-popup" type="button" onClick={handleButtonCitizenshipClick}>Выберите из списка</button>
                 </li>
 
                 {/* Требования и обязанности */}

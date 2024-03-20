@@ -5,13 +5,25 @@ import { Footer } from './Components/Footer/Footer';
 import { Heading } from './Components/Heading/Heding';
 import { useEffect, useState } from 'react';
 import * as api from './Api';
-import { FormModal } from './Components/FormModal/FormModal';
+
+type api_data = {
+  id: number;
+  name?: string;
+  title?: string
+}
+
+type api_login = {
+  email: string;
+  password: string
+}
 
 function App() {
-  const [profession, setProfession] = useState<number[]>([]); // Профессии
-  const [city, setCity] = useState<number[]>([]); // Города
-  const [citizenship, setCitizenship] = useState<number[]>([]); // гражданство
-  const [langData, setLangData] = useState<number[]>([]); // Иностранные языки
+  const [loggedIn, setLoggedIn] = useState(false); // Для авторизации
+  const [currentUser, setCurrentUser] = useState({}); // Для авторизации
+  const [professions, setProfession] = useState<api_data[]>([]); // Профессии
+  const [city, setCity] = useState<api_data[]>([]); // Города
+  const [citizenships, setCitizenship] = useState<api_data[]>([]); // гражданство
+  const [langData, setLangData] = useState<api_data[]>([]); // Иностранные языки
 
   useEffect(() => {
     api.getLanguages().then((langData) => {
@@ -30,6 +42,14 @@ function App() {
     })
   }
 
+  function getCity() {
+    api.getCity().then((city) => {
+      setCity(city);
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
+
   function getCitizenship() {
     api.getCitizenship().then((citizenship) => {
       setCitizenship(citizenship);
@@ -37,6 +57,18 @@ function App() {
       console.log(err)
     })
   }
+
+  function handleLogin({ email, password }: api_login) {
+    return api.login(email, password).then((data) => {
+      if (data.token) {
+        setLoggedIn(true);
+        // navigate('/', { replace: true });
+      };
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
+
 
 
   return (
@@ -55,7 +87,12 @@ function App() {
         <Heading />
         <Form
           langData={langData}
-          getProfession={getProfession} />
+          getProfession={getProfession}
+          getCity={getCity}
+          getCitizenship={getCitizenship}
+          citizenships={citizenships}
+          city={city}
+          professions={professions} />
       </main>
       <Footer />
     </>
