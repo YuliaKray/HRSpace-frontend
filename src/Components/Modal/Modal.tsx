@@ -12,11 +12,13 @@ export const Modal: React.FC<Props> = ({ modalOpen, children }) => {
   if (!modalOpen) return null;
 
   return createPortal(
-      <div className='modal__overlay'
-      >
-{children}
+    <div className='modal__overlay'
+    >
+      <div className='modal__content'>
+        {children}
       </div>
-      ,
+    </div>
+    ,
     document.body
   );
 };

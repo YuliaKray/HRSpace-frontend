@@ -9,6 +9,8 @@ import step2 from '../images/step2.png'
 import { EmployeeRequirementsForm } from '../formComponents/EmployeeRequirementsForm';
 import { RecruitersRequirementsForm } from '../formComponents/recruitersRequirementsForm';
 import { PaymentForm } from '../formComponents/PaymentForm';
+import { Modal } from './Modal/Modal';
+import { SubmitModal } from './SubmitModal/SubmitModal';
 
 type FormProps = {
     langData: number[]
@@ -99,7 +101,22 @@ const INITIAL_DATA = {
 
 };
 
-export function Form({langData, getProfession, openModal}: FormProps) {
+export function Form({langData, getProfession}: FormProps) {
+const [isModalOpen, setIsModalOpen] = useState(true);
+
+
+function openModal() {
+    setIsModalOpen(true);
+  }
+
+  function closeModal() {
+    setIsModalOpen(false);
+  }
+
+  function submitForm(){
+    console.log(INITIAL_DATA);
+    closeModal()
+  }
 
     const [currentIndex, setCurrentIndex] = useState(0); //попытка сделать чтобы вспывашкив начале сами менялись
     const [formData, setFormData] = useState(INITIAL_DATA);
@@ -162,6 +179,12 @@ export function Form({langData, getProfession, openModal}: FormProps) {
 
     return (
         <>
+        <Modal modalOpen={isModalOpen} closeModal={closeModal}>
+          {/* <FormModal 
+          profession={profession}
+          /> */}
+          <SubmitModal closeModal={closeModal} submitForm={submitForm}/>
+        </Modal>
             <form
                 className={`form ${isLastStep ? "form_last-step" : ""} `}
                 onSubmit={handleSubmit}

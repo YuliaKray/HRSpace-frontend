@@ -1,32 +1,57 @@
 .submitModal {
-  &__container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
-    background-color: #fff;
-    width: 644px;
-    height: 386px;
-    margin: 30vh auto 0 auto;
-    z-index: 1000;
-  }
   &__content{
+    padding-top: 56px;
+    margin: 0 auto;
+    max-width: 500px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 24px;
   }
   &__title {
+    margin: 0;
+    font-family: Arial;
     font-size: 24px;
     line-height: 1.16;
     color: #303233;
     font-weight: 700;
   }
 
-  &__text {
+  &__text-container {
+    margin: 16px auto 0 auto;
+    text-align: center;
     font-size: 14px;
     font-weight: 400;
+  }
+
+  &__paragraph{
+    line-height: 19.6px;
+    margin: 16px auto 0 auto;
+  }
+
+  &__button-container{
+    margin: 32px auto 0 auto;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-direction: row;
+  }
+
+  &__button{
+    border-radius: 8px;
+    border: none;
+    background-color: #1785E5;
+    color: white;
+    width: 230px;
+    height: 48px;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__button:last-child{
+    border: 1px solid gray ;
+    background-color: white; 
+    color: black; 
   }
 }
