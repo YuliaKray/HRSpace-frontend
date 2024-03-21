@@ -96,7 +96,7 @@ export function GeneralInfoForm({ name, startDate, lowestSalary, highestSalary, 
                     /> */}
                 </li>
                 <li className="form__box">
-                    <label htmlFor="salary" className="form__subtitle">Зарплата gross (до вычета НДФЛ), ₽ <span className="form__required">*</span></label>
+                    <label htmlFor="salary" className="form__subtitle">Зарплата gross, ₽ <span className="form__required">*</span></label>
                     <div className="form__input-small-wrapper">
                         <input
                             className="form__input-text form__input-text_small"
@@ -138,27 +138,27 @@ export function GeneralInfoForm({ name, startDate, lowestSalary, highestSalary, 
                     <fieldset className="form__fieldset" >
 
                         <div className="form__radio-wrapper">
-                            <input type="checkbox" name="startDate" id="startTommorow" checked={startDate.includes(1)} onChange={e => handexCheckboxChange(e)} value="1" className='form__checkbox' />
+                            <input type="radio" name="startDate" id="startTommorow" checked={startDate.includes(1)} onChange={e => handexCheckboxChange(e)} value="1" className='form__checkbox' />
                             <label htmlFor="startTommorow" className='form__box-title'>В течение 1-3 дней</label>
                         </div>
 
                         <div className="form__radio-wrapper">
-                            <input type="checkbox" name="startDate" id="withinTwoWeeks" checked={startDate.includes(2)} onChange={e => handexCheckboxChange(e)} value="2" className='form__checkbox' />
+                            <input type="radio" name="startDate" id="withinTwoWeeks" checked={startDate.includes(2)} onChange={e => handexCheckboxChange(e)} value="2" className='form__checkbox' />
                             <label htmlFor="withinTwoWeeks" className='form__box-title'>В течение 2 недель</label>
                         </div>
 
                         <div className="form__radio-wrapper">
-                            <input type="checkbox" name="startDate" id="withinMonth" checked={startDate.includes(3)} onChange={e => handexCheckboxChange(e)} value="3" className='form__checkbox' />
+                            <input type="radio" name="startDate" id="withinMonth" checked={startDate.includes(3)} onChange={e => handexCheckboxChange(e)} value="3" className='form__checkbox' />
                             <label htmlFor="withinMonth" className='form__box-title'>В течение месяца</label>
                         </div>
 
                         <div className="form__radio-wrapper">
-                            <input type="checkbox" name="startDate" id="withinThreeMonth" checked={startDate.includes(4)} onChange={e => handexCheckboxChange(e)} value="4" className='form__checkbox' />
+                            <input type="radio" name="startDate" id="withinThreeMonth" checked={startDate.includes(4)} onChange={e => handexCheckboxChange(e)} value="4" className='form__checkbox' />
                             <label htmlFor="withinThreeMonth" className='form__box-title'>В течение 3 месяцев</label>
                         </div>
 
                         <div className="form__radio-wrapper">
-                            <input type="checkbox" name="startDate" id="nuRush" checked={startDate.includes(5)} onChange={e => handexCheckboxChange(e)} value="5" className='form__checkbox' />
+                            <input type="radio" name="startDate" id="nuRush" checked={startDate.includes(5)} onChange={e => handexCheckboxChange(e)} value="5" className='form__checkbox' />
                             <label htmlFor="nuRush" className='form__box-title'>Не спешу с поиском</label>
                         </div>
 

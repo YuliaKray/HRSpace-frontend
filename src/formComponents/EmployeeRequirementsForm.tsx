@@ -23,11 +23,17 @@ type EmployeeRequirementsFormProps = EmployeeRequirements & {
     getCitizenship: () => void
 } & {
     handleCitizenshipOpen: () => void
+} & {
+    langData: {
+        id: number;
+        name?: string;
+        title?: string
+    }[],
 }
 
 export function EmployeeRequirementsForm({ 
     // gender,  minimum_age, maximum_age, 
-    education, experience, language_skills, language_level, core_skills, driving_skills, has_medical_sertificate, requirements_description, updateFields, currentStepIndex, getCitizenship, handleCitizenshipOpen }: EmployeeRequirementsFormProps) {
+    education, experience, language_skills, language_level, core_skills, driving_skills, has_medical_sertificate, requirements_description, updateFields, currentStepIndex, getCitizenship, handleCitizenshipOpen, langData }: EmployeeRequirementsFormProps) {
 
     const [language, setLanguage] = useState<JSX.Element[]>([]); // стейт для добавления новых инпутов выбора языка в разметку
 
@@ -66,7 +72,7 @@ export function EmployeeRequirementsForm({
 
     //Функция для добавления компанента выбора языка
     function addLanguageInput() {
-        setLanguage([...language, <LanguageInput language_skills={language_skills} language_level={language_level} updateFields={updateFields}/>])
+        setLanguage([...language, <LanguageInput language_skills={language_skills} language_level={language_level} updateFields={updateFields} langData={langData}/>])
     }
 
     function handleButtonCitizenshipClick() {
@@ -162,7 +168,7 @@ export function EmployeeRequirementsForm({
 
                 {/*Ключевые навыки*/}
                 {/*здесь не просто инпут, потом надо вернуться подумать*/}
-                <li className="form__box">
+                {/* <li className="form__box">
                     <label htmlFor="core_skills" className="form__subtitle">Ключевые навыки</label>
                     <input
                         className="form__input-text"
@@ -173,7 +179,7 @@ export function EmployeeRequirementsForm({
                         value={core_skills}
                         placeholder="Введите"
                     />
-                </li>
+                </li> */}
 
                 {/* Знание иностранных языков */}
                 <li className="form__box">
@@ -181,7 +187,7 @@ export function EmployeeRequirementsForm({
 
                     <div>
                         {/*выбор языка - это массив из id языков, которые выбрал пользователь */}
-                        <LanguageInput language_skills={language_skills} language_level={language_level} updateFields={updateFields}/>
+                        {/* <LanguageInput language_skills={language_skills} language_level={language_level} updateFields={updateFields} langData={langData}/> */}
 
                         {language} {/* в language лежит массив, куда будут добовляться новые инпуты языков */}
                         <button disabled={language_skills.length === 0 ? true : false} id="language-btn" className="form__btn-popup" type="button" onClick={()=> {addLanguageInput()}}>Указать еще один</button>
@@ -241,7 +247,7 @@ export function EmployeeRequirementsForm({
                 {/* Требования и обязанности */}
                 <li className="form__box">
 
-                    <label htmlFor="requirements_description" className="form__subtitle">Требования и обязанности</label>
+                    <label htmlFor="requirements_description" className="form__subtitle">Ключевые навыки и обязанности</label>
                     <textarea
                         className="form__input-text form__input-text_area"
                         // type="text"
@@ -249,7 +255,7 @@ export function EmployeeRequirementsForm({
                         name="requirements_description"
                         onChange={(e) => updateFields({ requirements_description: e.target.value })}
                         value={requirements_description}
-                        placeholder="Напишите требования к соискателю и его обязанности"
+                        placeholder="Опишите, какими ключевыми навыками должен обладать соискатель и какие обязанности ему предстоит исполнять"
                     />
                 </li>
 

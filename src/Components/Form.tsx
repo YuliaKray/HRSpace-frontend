@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { useMultistepForm } from "../assets/useMultistepForm";
 import { GeneralInfoForm } from "../formComponents/GeneralInfoForm";
 import { WorkingConditionsForm } from '../formComponents/workingConditionsForm'
-import spangebob from '../images/SpongeBob_SquarePants_character.svg.png'
 import step1 from '../images/step1.png'
 import step2 from '../images/step2.png'
+import step3 from '../images/step3.png';
 import step4 from '../images/step4.png'
 import { EmployeeRequirementsForm } from '../formComponents/EmployeeRequirementsForm';
 import { RecruitersRequirementsForm } from '../formComponents/recruitersRequirementsForm';
@@ -42,7 +42,9 @@ type FormProps = {
     getCity: () => void
 } & {
     getCitizenship: () => void
-};
+} & {
+    createForm: (formData: FormData) => void
+} ;
 
 type FormData = {
     name: string;
@@ -82,8 +84,6 @@ type FormData = {
     stop_list: string;
     numberOfPayment: number;
     paymentFormat: string;
-
-
 };
 
 const INITIAL_DATA = {
@@ -127,8 +127,8 @@ const INITIAL_DATA = {
 
 };
 
-export function Form({ langData, getProfession, professions, city, getCity, citizenships, getCitizenship }: FormProps) {
-    const [isModalOpen, setIsModalOpen] = useState(true);
+export function Form({ langData, getProfession, professions, city, getCity, citizenships, getCitizenship, createForm }: FormProps) {
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const [isProfessionModalOpen, setisProfessionModalOpen] = useState(false);
     const [isCityModalOpen, setisCityModalOpen] = useState(false);
     const [isCitizenshipModalOpen, setisCitizenshipModalOpen] = useState(false);
@@ -143,10 +143,7 @@ export function Form({ langData, getProfession, professions, city, getCity, citi
         setIsModalOpen(false);
     }
 
-    function submitForm() {
-        console.log(INITIAL_DATA);
-        closeModal()
-    }
+
 
     function handleProfessionOpen() {
         setisProfessionModalOpen(!isProfessionModalOpen);
@@ -196,6 +193,12 @@ export function Form({ langData, getProfession, professions, city, getCity, citi
 
     }
 
+    function submitForm() {
+        console.log(INITIAL_DATA);
+        createForm(formData);
+        closeModal()
+    }
+
     function handleSubmit(event: React.FormEvent) {
         event.preventDefault();
         console.log(formData)
@@ -218,7 +221,7 @@ export function Form({ langData, getProfession, professions, city, getCity, citi
             return imgSrc
 
         } else {
-            const imgSrc = spangebob
+            const imgSrc = step3
             return imgSrc
         }
 
@@ -241,7 +244,8 @@ export function Form({ langData, getProfession, professions, city, getCity, citi
                     handleCityOpen={handleCityOpen}
                     handleCitizenshipOpen={handleCitizenshipOpen}
                 /> :
-                <SubmitModal closeModal={closeModal} submitForm={submitForm} />}
+                (<SubmitModal closeModal={closeModal} submitForm={submitForm} />
+                /*вот сюда вставляется модальное окно для сохранить и выйти */)}
             </Modal>
             <form
                 className={`form ${isLastStep ? "form_last-step" : ""} `}
@@ -253,8 +257,8 @@ export function Form({ langData, getProfession, professions, city, getCity, citi
                 {!isLastStep && <img className='form__img' src={changeImg()} />}
 
                 <div className='form__btn-wrapper'>
-                    <button type="button" className='form__btn form__btn_close'>
-                        Выйти
+                    <button type="button" className='form__btn form__btn_close' onClick={openModal}>
+                        Сохранить и выйти
                     </button>
                     {!isFirstStep && (
                         <button type="button" onClick={previousStep} className='form__btn form__btn_previous'>
@@ -262,7 +266,7 @@ export function Form({ langData, getProfession, professions, city, getCity, citi
                         </button>
                     )}
                     {isLastStep ? (
-                        <button type="submit" className='form__btn'>Опубликовать</button>
+                        <button type="submit" className='form__btn' onClick={openModal}>Опубликовать</button>
                     ) : (
                         <button type="button" onClick={handleNextStep} className='form__btn'>
                             Продолжить

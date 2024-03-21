@@ -58,64 +58,77 @@ export function RecruitersRequirementsForm({ rating, completed_orders, recruiter
             <ul className="form__wrapper">
 
                 {/*Рейтинг*/}
-                <li>
-                    {/* <label htmlFor="city-select">Ваш город</label> */}
-                    <select onChange={e =>  updateFields({ rating: e.target.value })} defaultValue={rating} name="rating" id="rating" className="form__input-text form__input-text_small">
+                {/* <li> */}
+                {/* <label htmlFor="city-select">Ваш город</label> */}
+                {/* <select onChange={e =>  updateFields({ rating: e.target.value })} defaultValue={rating} name="rating" id="rating" className="form__input-text form__input-text_small">
                         <option value="rating" disabled>Рейтинг</option>
                         <option value="4.9">4,9 и выше</option>
                         <option value="4.5">4,5 и выше</option>
                         <option value="4">4 и выше</option>
                         <option value="3">3 и выше</option>
                         <option value="0">не имеет значение</option>
-                    </select>
+                    </select> */}
 
                 {/*Закрытые заявки*/}
-                    {/* <label htmlFor="city-select">Ваш город</label> */}
-                    <select id="experience" onChange={e => updateFields({ completed_orders: e.target.value})} defaultValue={completed_orders} name="completed_orders" className="form__input-text form__input-text_small">
+                {/* <label htmlFor="city-select">Ваш город</label> */}
+                {/* <select id="experience" onChange={e => updateFields({ completed_orders: e.target.value})} defaultValue={completed_orders} name="completed_orders" className="form__input-text form__input-text_small">
                         <option value="completed_orders" disabled>Закрытые заявки</option>
                         <option value="500">от 500</option>
                         <option value="100">от 100</option>
                         <option value="50">от 50</option>
                         <option value="10">от 10</option>
                         <option value="0">не имеет значение</option>
-                    </select>
+                    </select> */}
 
                 {/*Опыт*/}
-                    {/* <label htmlFor="city-select">Ваш город</label> */}
-                    <select name="recruiters_experience" defaultValue={recruiters_experience} onChange={e => updateFields({ recruiters_experience: e.target.value})} id="recruiters_experience" className="form__input-text form__input-text_small">
+                {/* <label htmlFor="city-select">Ваш город</label> */}
+                {/* <select name="recruiters_experience" defaultValue={recruiters_experience} onChange={e => updateFields({ recruiters_experience: e.target.value})} id="recruiters_experience" className="form__input-text form__input-text_small">
                         <option value="recruiters_experience" disabled>Опыт</option>
                         <option value="6+">более 6 лет</option>
                         <option value="from3to6">от 3 до 6 лет</option>
                         <option value="from1to3">от 1 года до 3 лет</option>
                         <option value="noExperience">без опыта</option>
                         <option value="notAplicable">не имеет значение</option>
-                    </select>
+                    </select> */}
 
                 {/*отвечает на сообщение*/}
-                    {/* <label htmlFor="city-select">Ваш город</label> */}
-                    <select name="respond_speed"id="respond_speed" defaultValue={respond_speed} onChange={e => updateFields({ respond_speed: e.target.value})} className="form__input-text form__input-text_small">
+                {/* <label htmlFor="city-select">Ваш город</label> */}
+                {/* <select name="respond_speed"id="respond_speed" defaultValue={respond_speed} onChange={e => updateFields({ respond_speed: e.target.value})} className="form__input-text form__input-text_small">
                         <option value="respond_speed" disabled>отвечает на сообщение</option>
                         <option value="30">в течение 30 мин</option>
                         <option value="120">в течение 2 часов</option>
                         <option value="1440">в течение дня</option>
-                    </select>
+                    </select> */}
 
                 {/*средняя скорость закрытия заявки*/}
-                    {/* <label htmlFor="city-select">Ваш город</label> */}
-                    <select name="fulfillment_speed" id="fulfillment_speed" onChange={e => updateFields({ fulfillment_speed: e.target.value})} defaultValue={fulfillment_speed} className="form__input-text form__input-text_small">
+                {/* <label htmlFor="city-select">Ваш город</label> */}
+                {/* <select name="fulfillment_speed" id="fulfillment_speed" onChange={e => updateFields({ fulfillment_speed: e.target.value})} defaultValue={fulfillment_speed} className="form__input-text form__input-text_small">
                         <option value="fulfillment_speed" disabled>средняя скорость закрытия заявки</option>
                         <option value="fast">быстро, менее недели</option>
                         <option value="standart">средняя, до трех недель</option>
                         <option value="notApplicable">не имеет значение</option>
                     </select>
-                </li>
+                </li> */}
 
 
 
                 {/*Опыт в подборе вакансий в отрасли */}
                 <li className="form__box">
-                    <p className="form__subtitle">Опыт в подборе вакансий в отрасли</p>
-                    <button className="form__btn-popup" type="button">Выберите отрасль из списка</button>
+                    <p className="form__subtitle">Опыт рекрутера в найме на аналогичные позиции</p>
+                    <fieldset className="form__fieldset" >
+
+                        <div className="form__radio-wrapper">
+                            <input type="radio" name="" id="important" checked={candidate_resume_form.includes('important')} onChange={e => handexCheckboxChange(e)} value='important' className='form__radio' />
+                            <label htmlFor="important" className='form__box-title'>Важно</label>
+                        </div>
+
+                        <div className="form__radio-wrapper">
+                            <input type="radio" name="" id="not_important" checked={candidate_resume_form.includes('not_important')} onChange={e => handexCheckboxChange(e)} value='not_important' className='form__radio' />
+                            <label htmlFor="not_important" className='form__box-title'>Не важно</label>
+                        </div>
+
+                    </fieldset>
+
                 </li>
 
                 {/*Обязанности рекрутера*/}

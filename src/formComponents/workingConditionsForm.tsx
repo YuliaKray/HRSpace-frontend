@@ -107,17 +107,17 @@ export function WorkingConditionsForm({ employmentType, workingSchedule, working
 
                     <div className="form__checkbox-wrapper">
                         <input type="checkbox" name="workingSchedule" checked={workingSchedule.includes('5/2')} id="5/2" value="5/2" onChange={handexCheckboxChange} className='form__checkbox' />
-                        <label htmlFor="5/2" className='form__box-title'>5/2</label>
+                        <label htmlFor="5/2" className='form__box-title'>Пятидневка</label>
                     </div>
 
                     <div className="form__checkbox-wrapper">
                         <input type="checkbox" name="workingSchedule" checked={workingSchedule.includes('2/2')} id="2/2" value="2/2" onChange={handexCheckboxChange} className='form__checkbox' />
-                        <label htmlFor="2/2" className='form__box-title'>2/2</label>
+                        <label htmlFor="2/2" className='form__box-title'>Два через два</label>
                     </div>
 
                     <div className="form__checkbox-wrapper">
                         <input type="checkbox" name="workingSchedule" checked={workingSchedule.includes('1/3')} id="1/3" value="1/3" onChange={handexCheckboxChange} className='form__checkbox' />
-                        <label htmlFor="1/3" className='form__box-title'>1/3</label>
+                        <label htmlFor="1/3" className='form__box-title'>Сутки / трое</label>
                     </div>
 
                     <div className="form__checkbox-wrapper">
@@ -154,7 +154,7 @@ export function WorkingConditionsForm({ employmentType, workingSchedule, working
                             name="workingType"
                             id="remote"
                             value="remote" />
-                        <label htmlFor="remote">Удалённая</label>
+                        <label htmlFor="remote">Удалённый</label>
                     </div>
 
                     <div className="form_radio_btn">
