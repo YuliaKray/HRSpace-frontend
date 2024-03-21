@@ -175,7 +175,7 @@ export function Form({ langData, getProfession, professions, city, getCity, citi
     } = useMultistepForm([
         <GeneralInfoForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex} getProfession={getProfession} handleProfessionOpen={handleProfessionOpen} handleCityOpen={handleCityOpen} getCity={getCity}/>,
         <WorkingConditionsForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex} />,
-        <EmployeeRequirementsForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex} getCitizenship={getCitizenship} handleCitizenshipOpen={handleCitizenshipOpen}/>,
+        <EmployeeRequirementsForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex} getCitizenship={getCitizenship} handleCitizenshipOpen={handleCitizenshipOpen} langData={langData}/>,
         <RecruitersRequirementsForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex} />,
         <PaymentForm {...formData} updateFields={updateFields} currentStepIndex={currentIndex} />,
     ]);
