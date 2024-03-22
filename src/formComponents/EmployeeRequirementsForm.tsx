@@ -11,7 +11,7 @@ type EmployeeRequirements = {
     experience: string[];
     language_skills: number[];
     language_level: string[];
-    core_skills: string;
+    // core_skills: string;
     driving_skills: string[];
     has_medical_sertificate: boolean;
     requirements_description: string;
@@ -33,7 +33,9 @@ type EmployeeRequirementsFormProps = EmployeeRequirements & {
 
 export function EmployeeRequirementsForm({ 
     // gender,  minimum_age, maximum_age, 
-    education, experience, language_skills, language_level, core_skills, driving_skills, has_medical_sertificate, requirements_description, updateFields, currentStepIndex, getCitizenship, handleCitizenshipOpen, langData }: EmployeeRequirementsFormProps) {
+    education, experience, language_skills, language_level, 
+    //core_skills, 
+    driving_skills, has_medical_sertificate, requirements_description, updateFields, currentStepIndex, getCitizenship, handleCitizenshipOpen, langData }: EmployeeRequirementsFormProps) {
 
     const [language, setLanguage] = useState<JSX.Element[]>([]); // стейт для добавления новых инпутов выбора языка в разметку
 
@@ -187,7 +189,7 @@ export function EmployeeRequirementsForm({
 
                     <div>
                         {/*выбор языка - это массив из id языков, которые выбрал пользователь */}
-                        {/* <LanguageInput language_skills={language_skills} language_level={language_level} updateFields={updateFields} langData={langData}/> */}
+                        <LanguageInput language_skills={language_skills} language_level={language_level} updateFields={updateFields} langData={langData}/>
 
                         {language} {/* в language лежит массив, куда будут добовляться новые инпуты языков */}
                         <button disabled={language_skills.length === 0 ? true : false} id="language-btn" className="form__btn-popup" type="button" onClick={()=> {addLanguageInput()}}>Указать еще один</button>

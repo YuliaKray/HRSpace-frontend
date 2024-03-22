@@ -2,11 +2,11 @@ import { Tooltips } from "../Components/Tooltips/Tooltips"; //Компонент
 import "../Components/Form.scss"
 
 type RecruitersRequirements = {
-    rating: string;
-    completed_orders: string;
-    recruiters_experience: string;
-    respond_speed: string;
-    fulfillment_speed: string;
+    // rating: string;
+    // completed_orders: string;
+    // recruiters_experience: string;
+    // respond_speed: string;
+    // fulfillment_speed: string;
     recruiter_responsibilities: string[];
     // workingType: string;
     // agreementType: string[];
@@ -22,7 +22,8 @@ type RecruitersRequirementsFormProps = RecruitersRequirements & {
 } & { currentStepIndex: number }
 
 
-export function RecruitersRequirementsForm({ rating, completed_orders, recruiters_experience, respond_speed, fulfillment_speed, recruiter_responsibilities, description, candidate_resume_form, stop_list, updateFields, currentStepIndex }: RecruitersRequirementsFormProps) {
+export function RecruitersRequirementsForm({ //rating, completed_orders, recruiters_experience, respond_speed, fulfillment_speed, 
+    recruiter_responsibilities, description, candidate_resume_form, stop_list, updateFields, currentStepIndex }: RecruitersRequirementsFormProps) {
 
     function handexCheckboxChange(e: React.ChangeEvent<HTMLInputElement>) {
         if (e.target.name === 'recruiter_responsibilities') {

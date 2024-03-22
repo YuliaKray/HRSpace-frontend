@@ -24,19 +24,19 @@ type FormData = {
   benefits: string[];
   other: string;
   education: string[];
-  core_skills: string;
+  // core_skills: string;
   language_skills: number[];
   language_level: string[];
   driving_skills: string[];
   has_medical_sertificate: boolean;
   citizenship: number;
   requirements_description: string;
-  rating: string;
+  // rating: string;
   experience: string[];
-  completed_orders: string;
-  recruiters_experience: string;
-  respond_speed: string;
-  fulfillment_speed: string;
+  // completed_orders: string;
+  // recruiters_experience: string;
+  // respond_speed: string;
+  // fulfillment_speed: string;
   recruiter_responsibilities: string[];
   description: string;
   candidate_resume_form: Array<string>;
@@ -67,12 +67,14 @@ function App() {
 
 
   useEffect(() => {
+    if (loggedIn) {
     api.getLanguages().then((langData) => {
       setLangData(langData);
     }).catch((err) => {
       console.log(err)
     })
-  }, [])
+  }
+  }, [loggedIn])
 
 
   function getProfession() {
@@ -101,7 +103,7 @@ function App() {
 
   function handleLogin({ email, password }: api_login) {
     return api.login(email, password).then((data) => {
-      if (data.token) {
+      if (data.auth_token) {
         setLoggedIn(true);
         navigate('/aplications/create/', { replace: true });
       };
@@ -124,7 +126,7 @@ function App() {
       <Header loggedIn={loggedIn}/>
       <main>
         <Routes>
-          <Route path='/login/' element={<Login handleLogin={handleLogin}/>}
+          <Route path='/auth/login/' element={<Login handleLogin={handleLogin}/>}
             // loggedIn={loggedIn}
             // component={Login} 
             />
@@ -151,6 +153,7 @@ function App() {
             </>}
             // loggedIn={loggedIn}
           />
+            <Route path="*" element={<Login handleLogin={handleLogin}/>} />
 
         </Routes>
       </main>

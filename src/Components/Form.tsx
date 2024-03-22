@@ -65,19 +65,19 @@ type FormData = {
     // minimum_age: number;
     // maximum_age: number;
     education: string[];
-    core_skills: string;
+    // core_skills: string;
     language_skills: number[];
     language_level: string[];
     driving_skills: string[];
     has_medical_sertificate: boolean;
     citizenship: number;
     requirements_description: string;
-    rating: string;
+    // rating: string;
     experience: string[];
-    completed_orders: string;
-    recruiters_experience: string;
-    respond_speed: string;
-    fulfillment_speed: string;
+    // completed_orders: string;
+    // recruiters_experience: string;
+    // respond_speed: string;
+    // fulfillment_speed: string;
     recruiter_responsibilities: string[];
     description: string;
     candidate_resume_form: Array<string>;
@@ -88,8 +88,8 @@ type FormData = {
 
 const INITIAL_DATA = {
     name: "",
-    profession: 0,
-    location: 0,
+    profession: 1,
+    location: 1,
     lowestSalary: 500,
     highestSalary: 1000,
     numberOfEmployees: 1,
@@ -108,16 +108,16 @@ const INITIAL_DATA = {
     experience: Array<string>(),
     language_skills: Array<number>(),
     language_level: Array<string>(),
-    core_skills: "",
+    // core_skills: "",
     driving_skills: Array<string>(),
     has_medical_sertificate: false,
-    citizenship: 0,
+    citizenship: 1,
     requirements_description: "",
-    rating: "",
-    completed_orders: "",
-    recruiters_experience: "",
-    respond_speed: "",
-    fulfillment_speed: "",
+    // rating: "",
+    // completed_orders: "",
+    // recruiters_experience: "",
+    // respond_speed: "",
+    // fulfillment_speed: "",
     recruiter_responsibilities: Array<string>(),
     description: "",
     candidate_resume_form: Array<string>(),
