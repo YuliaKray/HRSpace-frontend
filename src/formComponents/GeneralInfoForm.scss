@@ -10,29 +10,36 @@
 
 .form_radio_btn input[type=radio] {
 	display: none;
+	width: max-content;
 }
+
 .form_radio_btn label {
 	display: inline-block;
 	cursor: pointer;
+	color: #4042e4;
+	border: 1px solid #4042e4;
+	border-radius: 20px;
+	padding: 4px 12px;
 	padding: 0px 15px;
 	line-height: 34px;
 	user-select: none;
 }
- 
+
 /* Checked */
-.form_radio_btn input[type=radio]:checked + label {
+.form_radio_btn input[type=radio]:checked+label {
 	background: #303233;
 	color: #FFFFFF;
+	width: max-content;
+
 }
- 
+
 /* Hover */
 .form_radio_btn label:hover {
 	color: #666;
 }
- 
+
 /* Disabled */
-.form_radio_btn input[type=radio]:disabled + label {
+.form_radio_btn input[type=radio]:disabled+label {
 	background: #efefef;
 	color: #666;
 }
-

@@ -2,7 +2,7 @@ import './FormModal.scss';
 type GeneralInfo ={
     profession: number, 
     location: number,
-    citizenship: number
+    citizenship: number[]
 }
 
 type Props = GeneralInfo & {
@@ -52,7 +52,9 @@ type Props = GeneralInfo & {
 // ]
 
 export function FormModal(
-    { profession, location, citizenship,
+    { 
+        // profession, location, 
+        citizenship,
         professions,
          city, 
          citizenships, 
@@ -98,12 +100,23 @@ export function FormModal(
     }
     }
 
+    function handexCheckboxChange(e: React.ChangeEvent<HTMLInputElement>) {
+        if (e.target.name === 'citizenship') {
+            if (e.target.checked) {
+                updateFields({ citizenship: [...citizenship, parseInt(e.target.value)] })
+            } else {
+                updateFields({ citizenship: citizenship.filter((item) => item !== parseInt(e.target.value)) })
+            }
+
+        }
+    }
+
     function renderCitizenship() {
         if (isCitizenshipModalOpen === true) {
         const citizenshipRender = citizenships.map((item) => {
             return (
                 <div key={item.id}>
-                    <input type='radio' name='citizenship' value={item.id} id={item.name} onChange={(e) => updateFields({ citizenship: parseInt(e.target.value) })}/>
+                    <input type='checkbox' name='citizenship' value={item.id} id={item.name} checked={citizenship.includes(item.id)} onChange={handexCheckboxChange}/>
                     <label htmlFor={item.name} >{item.name}</label>
                 </div>
             )
@@ -133,6 +146,9 @@ export function FormModal(
                 {isCitizenshipModalOpen && <button type='button' onClick={handleCitizenshipOpen} className='formModal__btn formModal__btn_close'>Отменить</button>}
                 {isProfessionModalOpen && <button type='button' onClick={handleProfessionOpen} className='formModal__btn formModal__btn_close'>Отменить</button>}
                 {isProfessionModalOpen && <button type='button' onClick={handleProfessionOpen} className='formModal__btn'>Выбрать профессию</button>}
+                {isCityModalOpen && <button type='button' onClick={handleCityOpen} className='formModal__btn'>Выбрать город</button>}
+                {isCitizenshipModalOpen && <button type='button' onClick={handleCitizenshipOpen} className='formModal__btn'>Выбрать гражданство</button>}
+
                 </div>
             </div>
 

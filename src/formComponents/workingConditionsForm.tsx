@@ -3,9 +3,9 @@ import "../Components/Form.scss"
 
 
 type workingConditions = {
-    employmentType: number;
+    employmentType: string[]; // number;
     workingSchedule: string[];
-    workingType: string;
+    workingType: string[];
     agreementType: string[];
     benefits: string[];
     other: string;
@@ -21,8 +21,11 @@ export function WorkingConditionsForm({ employmentType, workingSchedule, working
     function handexCheckboxChange(e: React.ChangeEvent<HTMLInputElement>) {
         if (e.target.name === 'employmentType') {
             if (e.target.checked) {
-                updateFields({ employmentType: parseInt(e.target.value) })
+                updateFields({ employmentType: [...employmentType, e.target.value] })
+            } else {
+                updateFields({ employmentType: employmentType.filter((item) => item !== e.target.value) })
             }
+
         }
         if (e.target.name === 'workingSchedule') {
             if (e.target.checked) {
@@ -33,7 +36,12 @@ export function WorkingConditionsForm({ employmentType, workingSchedule, working
             }
         }
         if (e.target.name === 'workingType') {
-            updateFields({ workingType: e.target.value })
+            if (e.target.checked) {
+                updateFields({ workingType: [...workingType, e.target.value] })
+            }
+            else {
+                updateFields({ workingType: workingType.filter((item) => item !== e.target.value) })
+            }
         }
         if (e.target.name === 'agreementType') {
             if (e.target.checked) {
@@ -64,28 +72,28 @@ export function WorkingConditionsForm({ employmentType, workingSchedule, working
                     <fieldset className="form__box">
                         <div className="form__box_type_radio">
                             <div className="form_radio_btn">
-                                <input type="radio" id="employmentType-1" name="employmentType" checked={employmentType === 1} onChange={e => updateFields({ employmentType: parseInt(e.target.value) })} value="1" />
-                                <label htmlFor="employmentType-1">Полная</label>
+                                <input type="radio" id="full-time" name="employmentType" checked={employmentType.includes('full-time')} onChange={handexCheckboxChange} value="full-time" />
+                                <label htmlFor="full-time">Полная</label>
                             </div>
 
                             <div className="form_radio_btn">
-                                <input type="radio" id="employmentType-2" name="employmentType" checked={employmentType === 2} onChange={e => updateFields({ employmentType: parseInt(e.target.value) })} value="2" />
-                                <label htmlFor="employmentType-2">Частичная</label>
+                                <input type="radio" id="part-time" name="employmentType" checked={employmentType.includes('part-time')} onChange={handexCheckboxChange} value="part-time" />
+                                <label htmlFor="part-time">Частичная</label>
                             </div>
 
                             <div className="form_radio_btn">
-                                <input type="radio" id="employmentType-3" name="employmentType" checked={employmentType === 3} onChange={e => updateFields({ employmentType: parseInt(e.target.value) })} value="3" />
-                                <label htmlFor="employmentType-3">Проект</label>
+                                <input type="radio" id="project" name="employmentType" checked={employmentType.includes('project')} onChange={handexCheckboxChange} value="project" />
+                                <label htmlFor="project">Проект</label>
                             </div>
 
                             <div className="form_radio_btn">
-                                <input type="radio" id="employmentType-4" name="employmentType" checked={employmentType === 4} onChange={e => updateFields({ employmentType: parseInt(e.target.value) })} value="4" />
-                                <label htmlFor="employmentType-4">Вахта</label>
+                                <input type="radio" id="shift_work" name="employmentType" checked={employmentType.includes('shift_work')} onChange={handexCheckboxChange} value="shift_work" />
+                                <label htmlFor="shift_work">Вахта</label>
                             </div>
 
                             <div className="form_radio_btn">
-                                <input type="radio" id="employmentType-5" name="employmentType" checked={employmentType === 5} onChange={e => updateFields({ employmentType: parseInt(e.target.value) })} value="5" />
-                                <label htmlFor="employmentType-5">Стажировка</label>
+                                <input type="radio" id="traineeship" name="employmentType" checked={employmentType.includes('traineeship')} onChange={handexCheckboxChange} value="traineeship" />
+                                <label htmlFor="traineeship">Стажировка</label>
                             </div>
                         </div>
                     </fieldset>
@@ -139,7 +147,7 @@ export function WorkingConditionsForm({ employmentType, workingSchedule, working
 
                     <div className="form_radio_btn">
                         <input type="radio"
-                            checked={workingType === 'office'}
+                            checked={workingType.includes('office')}
                             onChange={handexCheckboxChange}
                             name="workingType"
                             id="office"
@@ -149,7 +157,7 @@ export function WorkingConditionsForm({ employmentType, workingSchedule, working
 
                     <div className="form_radio_btn">
                         <input type="radio"
-                            checked={workingType === 'remote'}
+                            checked={workingType.includes('remote')}
                             onChange={handexCheckboxChange}
                             name="workingType"
                             id="remote"
@@ -159,7 +167,7 @@ export function WorkingConditionsForm({ employmentType, workingSchedule, working
 
                     <div className="form_radio_btn">
                         <input
-                            checked={workingType === 'hybrid'}
+                            checked={workingType.includes('hybrid')}
                             onChange={handexCheckboxChange}
                             type="radio"
                             value="hybrid"

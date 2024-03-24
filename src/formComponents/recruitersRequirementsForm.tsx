@@ -12,8 +12,9 @@ type RecruitersRequirements = {
     // agreementType: string[];
     // benefits: string[];
     description: string;
-    candidate_resume_form: string[];
+    candidate_resume_form: string;
     stop_list: string;
+    recruit_experience: string;
 
 }
 
@@ -23,7 +24,7 @@ type RecruitersRequirementsFormProps = RecruitersRequirements & {
 
 
 export function RecruitersRequirementsForm({ //rating, completed_orders, recruiters_experience, respond_speed, fulfillment_speed, 
-    recruiter_responsibilities, description, candidate_resume_form, stop_list, updateFields, currentStepIndex }: RecruitersRequirementsFormProps) {
+    recruiter_responsibilities, description, candidate_resume_form, stop_list, recruit_experience, updateFields, currentStepIndex }: RecruitersRequirementsFormProps) {
 
     function handexCheckboxChange(e: React.ChangeEvent<HTMLInputElement>) {
         if (e.target.name === 'recruiter_responsibilities') {
@@ -34,13 +35,13 @@ export function RecruitersRequirementsForm({ //rating, completed_orders, recruit
                 updateFields({ recruiter_responsibilities: recruiter_responsibilities.filter((item) => item !== e.target.value) })
             }
         }
-        if (e.target.name === 'candidate_resume_form') {
-            if (e.target.checked) {
-                updateFields({ candidate_resume_form: [...candidate_resume_form, e.target.value] })
-            } else {
-                updateFields({ candidate_resume_form: candidate_resume_form.filter((item) => item !== e.target.value) })
-            }
-        }
+        // if (e.target.name === 'candidate_resume_form') {
+        //     if (e.target.checked) {
+        //         updateFields({ candidate_resume_form: [...candidate_resume_form, e.target.value] })
+        //     } else {
+        //         updateFields({ candidate_resume_form: candidate_resume_form.filter((item) => item !== e.target.value) })
+        //     }
+        // }
         // if (e.target.name === 'driving_skills') {
         //     if (e.target.checked) {
         //         updateFields({ driving_skills: [...driving_skills, e.target.value] })
@@ -115,17 +116,17 @@ export function RecruitersRequirementsForm({ //rating, completed_orders, recruit
 
                 {/*Опыт в подборе вакансий в отрасли */}
                 <li className="form__box">
-                    <p className="form__subtitle">Опыт рекрутера в найме на аналогичные позиции</p>
+                    <p className="form__subtitle">Опыт рекрутера в найме на аналогичные позиции</p>
                     <fieldset className="form__fieldset" >
 
                         <div className="form__radio-wrapper">
-                            <input type="radio" name="" id="important" checked={candidate_resume_form.includes('important')} onChange={e => handexCheckboxChange(e)} value='important' className='form__radio' />
+                            <input type="radio" name="recruit_experience" id="important" checked={recruit_experience.includes('important')} onChange={e => handexCheckboxChange(e)} value='important' className='form__radio' />
                             <label htmlFor="important" className='form__box-title'>Важно</label>
                         </div>
 
                         <div className="form__radio-wrapper">
-                            <input type="radio" name="" id="not_important" checked={candidate_resume_form.includes('not_important')} onChange={e => handexCheckboxChange(e)} value='not_important' className='form__radio' />
-                            <label htmlFor="not_important" className='form__box-title'>Не важно</label>
+                            <input type="radio" name="recruit_experience" id="no_important" checked={recruit_experience.includes('no_important')} onChange={e => handexCheckboxChange(e)} value='no_important' className='form__radio' />
+                            <label htmlFor="no_important" className='form__box-title'>Не важно</label>
                         </div>
 
                     </fieldset>
@@ -191,12 +192,12 @@ export function RecruitersRequirementsForm({ //rating, completed_orders, recruit
                     <fieldset className="form__fieldset" >
 
                         <div className="form__radio-wrapper">
-                            <input type="radio" name="candidate_resume_form" id="no_pre_interview" checked={candidate_resume_form.includes('no_pre_interview')} onChange={e => handexCheckboxChange(e)} value='no_pre_interview' className='form__radio' />
+                            <input type="radio" name="candidate_resume_form" id="no_pre_interview" checked={candidate_resume_form === "no_pre_interview"} onChange={e => updateFields({ candidate_resume_form: e.target.value})} value='no_pre_interview' className='form__radio' />
                             <label htmlFor="no_pre_interview" className='form__box-title'>Резюме без предварительного собеседования</label>
                         </div>
 
                         <div className="form__radio-wrapper">
-                            <input type="radio" name="candidate_resume_form" id="with_pre_interview" checked={candidate_resume_form.includes('with_pre_interview')} onChange={e => handexCheckboxChange(e)} value='with_pre_interview' className='form__radio' />
+                            <input type="radio" name="candidate_resume_form" id="with_pre_interview" checked={candidate_resume_form === "with_pre_interview"}onChange={e => updateFields({ candidate_resume_form: e.target.value})} value='with_pre_interview' className='form__radio' />
                             <label htmlFor="with_pre_interview" className='form__box-title'>Резюме кандидатов, с которыми проведено интервью, с комментариями по кандидату</label>
                         </div>
 

@@ -6,7 +6,46 @@ import { Heading } from './Components/Heading/Heding';
 import { Login } from './Components/Login/Login';
 import { useEffect, useState } from 'react';
 import * as api from './Api';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate, Navigate } from 'react-router-dom';
+// import { ProtectedRoute } from './Components/ProtectedRoute/ProtectedRoute';
+
+interface ProtectedRouteProps { 
+  // path: string; 
+  element: React.ReactNode; // тип для элемента, который должен отобразиться, если пользователь авторизован 
+  loggedIn: boolean; // флаг, указывающий, авторизован ли пользователь 
+  // redirectTo: string; // путь для перенаправления, если пользователь не авторизован 
+} 
+
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ 
+  // path, 
+  element, 
+  loggedIn, 
+  // redirectTo, 
+}) => { 
+
+    return loggedIn ? (
+        // <Route path={path} element={element} />
+        element
+    ) : (
+        <Navigate to="/auth/login" replace /> 
+    );
+}; 
+
+// const UnprotectedRoute: React.FC<ProtectedRouteProps> = ({ 
+//   path, 
+//   element, 
+//   loggedIn, 
+//   // redirectTo, 
+// }) => { 
+
+//     return loggedIn === false ? (
+//         <Route path={path} element={element} />
+//     ) : (
+//         <Navigate to="/auth/login" replace /> 
+//     );
+// }; 
+
+
 
 type FormData = {
   name: string;
@@ -15,11 +54,11 @@ type FormData = {
   lowestSalary: number;
   highestSalary: number;
   numberOfEmployees: number;
-  startDate: Array<number>;
+  startDate: string;
   recruitersQty: number;
-  employmentType: number;
+  employmentType: string[];
   workingSchedule: Array<string>;
-  workingType: string;
+  workingType: string[];
   agreementType: string[];
   benefits: string[];
   other: string;
@@ -29,7 +68,7 @@ type FormData = {
   language_level: string[];
   driving_skills: string[];
   has_medical_sertificate: boolean;
-  citizenship: number;
+  citizenship: number[];
   requirements_description: string;
   // rating: string;
   experience: string[];
@@ -39,10 +78,12 @@ type FormData = {
   // fulfillment_speed: string;
   recruiter_responsibilities: string[];
   description: string;
-  candidate_resume_form: Array<string>;
+  candidate_resume_form: string;
   stop_list: string;
   numberOfPayment: number;
   paymentFormat: string;
+  recruit_experience: string;
+
 };
 
 type api_data = {
@@ -58,7 +99,7 @@ type api_login = {
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false); // Для авторизации
-  const [currentUser, setCurrentUser] = useState({}); // Для авторизации
+  // const [currentUser, setCurrentUser] = useState({}); // Для авторизации
   const [professions, setProfession] = useState<api_data[]>([]); // Профессии
   const [city, setCity] = useState<api_data[]>([]); // Города
   const [citizenships, setCitizenship] = useState<api_data[]>([]); // гражданство
@@ -105,8 +146,8 @@ function App() {
     return api.login(email, password).then((data) => {
       if (data.auth_token) {
         setLoggedIn(true);
-        navigate('/aplications/create/', { replace: true });
-      };
+        navigate('/applications/create/', { replace: true });
+      }
     }).catch((err) => {
       console.log(err)
     })
@@ -130,15 +171,41 @@ function App() {
             // loggedIn={loggedIn}
             // component={Login} 
             />
+         
+            {/* <ProtectedRoute path='/applications/create/' element={<>
+              <Heading />
+              <Form
+                langData={langData}
+                getProfession={getProfession}
+                getCity={getCity}
+                getCitizenship={getCitizenship}
+                citizenships={citizenships}
+                city={city}
+                professions={professions}
+                createForm={submitForm} />
+            </>}          
+            loggedIn={loggedIn} 
+        /> */}
 
-          {/* <button style={{
-            position: 'fixed',
-            width: '300px',
-            height: '300px',
-            top: '50%',
-            right: '50%',        
-         }}onClick={openModal}>button</button> */}
-          <Route path='/aplications/create/' element={
+         <Route path='/applications/create/' element={<ProtectedRoute 
+          // path="/applications/create/" 
+          element={
+            <>
+              <Heading />
+              <Form
+                langData={langData}
+                getProfession={getProfession}
+                getCity={getCity}
+                getCitizenship={getCitizenship}
+                citizenships={citizenships}
+                city={city}
+                professions={professions}
+                createForm={submitForm} />
+            </>}          
+            loggedIn={loggedIn} 
+          // redirectTo="/auth/login/" 
+        />} />
+          {/* <Route path='/aplications/create/' element={
             <>
               <Heading />
               <Form
@@ -152,12 +219,12 @@ function App() {
                 createForm={submitForm} />
             </>}
             // loggedIn={loggedIn}
-          />
+          /> */}
             <Route path="*" element={<Login handleLogin={handleLogin}/>} />
 
         </Routes>
       </main>
-      {window.location.pathname === "/aplications/create/" && <Footer />}
+      {window.location.pathname === "/aplications/create/" && loggedIn && <Footer />}
     </>
   )
 }

@@ -40,40 +40,43 @@ export function PaymentForm({ numberOfPayment, paymentFormat, updateFields, curr
                 <p className='form__subtitle'>Тип оплаты <span className="form__required">*</span></p>
                     <fieldset className="form__fieldset-payment">
                     <div className="form__payment-wrapper">
-                        <label htmlFor="prepayment" className='form__payment-text form__payment-label'>Выбрать</label>
-                        <input type="radio" onChange={e => updateFields({paymentFormat: e.target.value })} checked={paymentFormat === 'prepayment'} name="paymentFormat" id="prepayment" value="prepayment" className='form__radio form__payment-radio' />
-                        <h3 className="form__payment-title">100%</h3>
-                        <p className="form__payment-text form__payment-text_span">Когда</p>
-                        <p className="form__payment-text">оплачиваете рекрутеру 100% в день выхода сотрудника</p>
-                        <p className="form__payment-text form__payment-text_span">Гарантийный период</p>
-                        <p className="form__payment-text">нет</p>
+                        <label htmlFor="100%_first_day" className='form__payment-text form__payment-label'>Выбрать</label>
+                        <input type="radio" onChange={e => updateFields({paymentFormat: e.target.value })} checked={paymentFormat === '100%_first_day'} name="paymentFormat" id="100%_first_day" value="100%_first_day" className='form__radio form__payment-radio' />
+                        <h3 className="form__payment-title">В день выхода сотрудника</h3>
                         <p className="form__payment-text form__payment-text_span">Размер вознаграждения</p>
-                        <p className="form__payment-text ">Не менее 30 000 ₽</p>
+                        <p className="form__payment-text">Не менее 30 000 ₽</p>
+                        <p className="form__payment-text form__payment-text_span">Гарантийный период</p>
+                        <p className="form__payment-text">Отсутствует</p>
+                        <p className="form__payment-text form__payment-text_span">Когда</p>
+                        <p className="form__payment-text ">Оплата всей суммы вознаграждения рекрутеру производится в день выхода сотрудника</p>
                     </div>
                     <div className="form__payment-wrapper">
-                        <label htmlFor="50/50" className='form__payment-text form__payment-label'>Выбрать</label>
-                        <input type="radio" onChange={e => updateFields({paymentFormat: e.target.value })} checked={paymentFormat === '50/50'} name="paymentFormat" id="50/50" value="50/50" className='form__radio form__payment-radio' />
+                        <label htmlFor="50%_first_day_50%_warranty_period_expiration" className='form__payment-text form__payment-label'>Выбрать</label>
+                        <input type="radio" onChange={e => updateFields({paymentFormat: e.target.value })} checked={paymentFormat === '50%_first_day_50%_warranty_period_expiration'} name="paymentFormat" id="50%_first_day_50%_warranty_period_expiration" value="50%_first_day_50%_warranty_period_expiration" className='form__radio form__payment-radio' />
                         <h3 className="form__payment-title">50% + 50%</h3>
-                        <p className="form__payment-text form__payment-text_span">Когда</p>
-                        <p className="form__payment-text">50% за выход и 50% по окончанию гарантийного периода</p>
-                        <p className="form__payment-text form__payment-text_span">Гарантийный период</p>
-                        <p className="form__payment-text">есть,1 месяц</p>
                         <p className="form__payment-text form__payment-text_span">Размер вознаграждения</p>
-                        <p className="form__payment-text ">Не менее 50 000 ₽</p>
+                        <p className="form__payment-text">Не менее 50 000 ₽</p>
+                        <p className="form__payment-text form__payment-text_span">Гарантийный период</p>
+                        <p className="form__payment-text">Есть (1 месяц)</p>
+                        <p className="form__payment-text form__payment-text_span">Когда</p>
+                        <p className="form__payment-text ">50% оплаты производится в день выхода сотрудника, остальные 50% оплачиваются после
+                        окончания гарантийного периода. Если сотрудник не проходит гарантийный период, то 50% от 
+                        суммы вознаграждения останутся на вашем счёте</p>
 
                     </div>
 
                     <div className="form__payment-wrapper">
-                        <label htmlFor="postpayment" className='form__payment-text form__payment-label'>Выбрать</label>
-                        <input type="radio" onChange={e => updateFields({paymentFormat: e.target.value })} checked={paymentFormat === 'postpayment'} name="paymentFormat"  id="postpayment" value="postpayment" className='form__radio form__payment-radio' />
-                        <h3 className="form__payment-title">100%</h3>
-                        <p className="form__payment-text form__payment-text_span">Когда</p>
-                        <p className="form__payment-text">оплачиваете рекрутеру 100% по окончанию гарантийного периода</p>
-                        <p className="form__payment-text form__payment-text_span">Гарантийный период</p>
-                        <p className="form__payment-text">есть,1 месяц</p>
+                        <label htmlFor="100%_warranty_period_expiration" className='form__payment-text form__payment-label'>Выбрать</label>
+                        <input type="radio" onChange={e => updateFields({paymentFormat: e.target.value })} checked={paymentFormat === '100%_warranty_period_expiration'} name="paymentFormat"  id="100%_warranty_period_expiration" value="100%_warranty_period_expiration" className='form__radio form__payment-radio' />
+                        <h3 className="form__payment-title">После гарантийного периода</h3>
                         <p className="form__payment-text form__payment-text_span">Размер вознаграждения</p>
                         <p className="form__payment-text ">Не менее 70 000 ₽</p>
-
+                        <p className="form__payment-text form__payment-text_span">Гарантийный период</p>
+                        <p className="form__payment-text">Есть (1 месяц)</p>
+                        <p className="form__payment-text form__payment-text_span">Когда</p>
+                        <p className="form__payment-text">Оплата всей суммы вознаграждения рекрутеру производится по 
+                        окончанию гарантийного периода. Если сотрудник не проходит гарантийный период, 
+                        то 100% суммы сохраняется, а заявка возвращается в «Активные»</p>
                     </div>
                 </fieldset>
 

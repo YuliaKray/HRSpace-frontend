@@ -5,11 +5,11 @@ type FormData = {
   lowestSalary: number;
   highestSalary: number;
   numberOfEmployees: number;
-  startDate: Array<number>;
+  startDate: string;
   recruitersQty: number;
-  employmentType: number;
+  employmentType: string[];
   workingSchedule: Array<string>;
-  workingType: string;
+  workingType: string[];
   agreementType: string[];
   benefits: string[];
   other: string;
@@ -22,7 +22,7 @@ type FormData = {
   language_level: string[];
   driving_skills: string[];
   has_medical_sertificate: boolean;
-  citizenship: number;
+  citizenship: number[];
   requirements_description: string;
   // rating: string;
   experience: string[];
@@ -32,10 +32,11 @@ type FormData = {
   // fulfillment_speed: string;
   recruiter_responsibilities: string[];
   description: string;
-  candidate_resume_form: Array<string>;
+  candidate_resume_form: string;
   stop_list: string;
   numberOfPayment: number;
   paymentFormat: string;
+  recruit_experience: string;
 };
 
 
@@ -131,7 +132,7 @@ export const getLanguages = () => {
 
 export const saveForm = (formData: FormData) => {
   const token = localStorage.getItem('token');
-  return fetch(`${BASE_URL}/applications/create/`, {
+  return fetch(`${BASE_URL}/applications/`, {
     method: 'POST',
     headers: {
       'Authorization': `Token ${token}`,
@@ -174,10 +175,14 @@ export const saveForm = (formData: FormData) => {
         description: formData.description,
         candidate_resume_form: formData.candidate_resume_form,
         stop_list: formData.stop_list,
+      }, 
+      payments: {
+        payment_amount: formData.numberOfPayment,
+        payment_type: formData.paymentFormat,
       }
       // language_level: formData.language_level,
-      // numberOfPayment: formData.numberOfPayment,
-      // paymentFormat: formData.paymentFormat,
+      // payment_amount: formData.numberOfPayment,
+      // payment_type: formData.paymentFormat,
     })
   })
     .then(res => handleResponse(res))

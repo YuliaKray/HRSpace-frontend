@@ -54,6 +54,7 @@
             justify-content: flex-start;
             margin: 0;
             padding: 0;
+            width: 100%;
         }
     }
 
@@ -236,7 +237,9 @@
     }
 
     &__payment-wrapper {
-        background-color: #e0e8fd;
+        box-shadow: 0 0 20px 0 rgba(64, 66, 228, 0.15);
+        background: #fff;
+        // background-color: #e0e8fd;
         border-radius: 20px;
         position: relative;
         max-width: 405px;
@@ -263,6 +266,7 @@
         font-size: 24px;
         line-height: 116%;
         margin: 0;
+        padding-top: 40px;
         padding-bottom: 20px;
     }
 

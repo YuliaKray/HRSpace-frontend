@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import "../Components/Form.scss"
 import { Tooltips } from "../Components/Tooltips/Tooltips"; //Компонент начальных зеленых карточек 
 import { LanguageInput } from "../Components/LanguageInput";

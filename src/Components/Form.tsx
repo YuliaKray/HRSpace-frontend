@@ -53,11 +53,11 @@ type FormData = {
     lowestSalary: number;
     highestSalary: number;
     numberOfEmployees: number;
-    startDate: Array<number>;
+    startDate: string;
     recruitersQty: number;
-    employmentType: number;
+    employmentType: string[];// number; // 
     workingSchedule: Array<string>;
-    workingType: string;
+    workingType: string[]; //string[]
     agreementType: string[];
     benefits: string[];
     other: string;
@@ -70,7 +70,7 @@ type FormData = {
     language_level: string[];
     driving_skills: string[];
     has_medical_sertificate: boolean;
-    citizenship: number;
+    citizenship: number[];// number; //string[]
     requirements_description: string;
     // rating: string;
     experience: string[];
@@ -80,10 +80,12 @@ type FormData = {
     // fulfillment_speed: string;
     recruiter_responsibilities: string[];
     description: string;
-    candidate_resume_form: Array<string>;
+    candidate_resume_form: string;
     stop_list: string;
     numberOfPayment: number;
     paymentFormat: string;
+    recruit_experience: string;
+
 };
 
 const INITIAL_DATA = {
@@ -94,10 +96,10 @@ const INITIAL_DATA = {
     highestSalary: 1000,
     numberOfEmployees: 1,
     recruitersQty: 2,
-    startDate: Array<number>(),
+    startDate: 'tomorrow',
     workingSchedule: Array<string>(),
-    workingType: "office",
-    employmentType: 1,
+    workingType: ["office"],
+    employmentType: ['full-time'],
     agreementType: Array<string>(),
     benefits: Array<string>(),
     other: '',
@@ -111,7 +113,7 @@ const INITIAL_DATA = {
     // core_skills: "",
     driving_skills: Array<string>(),
     has_medical_sertificate: false,
-    citizenship: 1,
+    citizenship: [1],
     requirements_description: "",
     // rating: "",
     // completed_orders: "",
@@ -120,10 +122,12 @@ const INITIAL_DATA = {
     // fulfillment_speed: "",
     recruiter_responsibilities: Array<string>(),
     description: "",
-    candidate_resume_form: Array<string>(),
+    candidate_resume_form: "no_pre_interview",
     stop_list: "",
     numberOfPayment: 30000,
     paymentFormat: '',
+    recruit_experience: 'no_important'
+
 
 };
 
@@ -202,6 +206,7 @@ export function Form({ langData, getProfession, professions, city, getCity, citi
     function handleSubmit(event: React.FormEvent) {
         event.preventDefault();
         console.log(formData)
+        // event.target.checkValidity()
     }
 
     function changeImg() {
