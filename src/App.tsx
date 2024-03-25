@@ -169,7 +169,7 @@ function App() {
               </>}
             loggedIn={loggedIn} />} />
 
-          <Route path="*" element={<Login handleLogin={handleLogin} />} />
+          <Route path="*" element={<UnprotectedRoute loggedIn={loggedIn} element={<Login handleLogin={handleLogin} />}/>} />
 
         </Routes>
       </main>
