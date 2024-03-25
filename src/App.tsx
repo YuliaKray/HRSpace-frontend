@@ -21,7 +21,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   return loggedIn ? (
     element
   ) : (
-    <Navigate to="/auth/login" replace />
+    <Navigate to="/auth/login/" replace />
   );
 };
 
@@ -33,7 +33,7 @@ const UnprotectedRoute: React.FC<ProtectedRouteProps> = ({
     return loggedIn === false ? (
         element
     ) : (
-        <Navigate to="/auth/login" replace /> 
+        <Navigate to="/auth/login/" replace /> 
     );
 }; 
 
@@ -131,7 +131,7 @@ function App() {
     return api.login(email, password).then((data) => {
       if (data.auth_token) {
         setLoggedIn(true);
-        navigate('/applications/create/', { replace: true });
+        navigate('/applications/', { replace: true });
       }
     }).catch((err) => {
       alert(err)
@@ -153,7 +153,7 @@ function App() {
       <main>
         <Routes>
           <Route path='/auth/login/' element={<UnprotectedRoute loggedIn={loggedIn} element={<Login handleLogin={handleLogin} />}/>} />
-          <Route path='/applications/create/' element={<ProtectedRoute
+          <Route path='/applications/' element={<ProtectedRoute
             element={
               <>
                 <Heading />
@@ -173,7 +173,7 @@ function App() {
 
         </Routes>
       </main>
-      {window.location.pathname === "/aplications/create/" && loggedIn && <Footer />}
+      {window.location.pathname === "/applications/" && loggedIn && <Footer />}
     </>
   )
 }
