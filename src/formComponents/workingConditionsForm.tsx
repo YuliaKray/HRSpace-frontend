@@ -105,8 +105,8 @@ export function WorkingConditionsForm({ employmentType, workingSchedule, working
                     <p className='form__subtitle'>График работы</p>
                     <fieldset className="form__fieldset">
                     <div className="form__checkbox-wrapper">
-                        <input type="checkbox" name="workingSchedule" checked={workingSchedule.includes('full-time')} id="full-time" value="full-time" onChange={handexCheckboxChange} className='form__checkbox' />
-                        <label htmlFor="full-time" className='form__box-title'>Полный день</label>
+                        <input type="checkbox" name="workingSchedule" checked={workingSchedule.includes('full-day')} id="full-day" value="full-day" onChange={handexCheckboxChange} className='form__checkbox' />
+                        <label htmlFor="full-day" className='form__box-title'>Полный день</label>
                     </div>
                     <div className="form__checkbox-wrapper">
                         <input type="checkbox" name="workingSchedule" checked={workingSchedule.includes('part-time')} id="part-time" value="part-time" onChange={handexCheckboxChange} className='form__checkbox' />
@@ -114,28 +114,28 @@ export function WorkingConditionsForm({ employmentType, workingSchedule, working
                     </div>
 
                     <div className="form__checkbox-wrapper">
-                        <input type="checkbox" name="workingSchedule" checked={workingSchedule.includes('5/2')} id="5/2" value="5/2" onChange={handexCheckboxChange} className='form__checkbox' />
-                        <label htmlFor="5/2" className='form__box-title'>Пятидневка</label>
+                        <input type="checkbox" name="workingSchedule" checked={workingSchedule.includes('5_on_2_off')} id="5_on_2_off" value="5_on_2_off" onChange={handexCheckboxChange} className='form__checkbox' />
+                        <label htmlFor="5_on_2_off" className='form__box-title'>Пятидневка</label>
                     </div>
 
                     <div className="form__checkbox-wrapper">
-                        <input type="checkbox" name="workingSchedule" checked={workingSchedule.includes('2/2')} id="2/2" value="2/2" onChange={handexCheckboxChange} className='form__checkbox' />
-                        <label htmlFor="2/2" className='form__box-title'>Два через два</label>
+                        <input type="checkbox" name="workingSchedule" checked={workingSchedule.includes('2_on_2_off')} id="2_on_2_off" value="2_on_2_off" onChange={handexCheckboxChange} className='form__checkbox' />
+                        <label htmlFor="2_on_2_off" className='form__box-title'>Два через два</label>
                     </div>
 
                     <div className="form__checkbox-wrapper">
-                        <input type="checkbox" name="workingSchedule" checked={workingSchedule.includes('1/3')} id="1/3" value="1/3" onChange={handexCheckboxChange} className='form__checkbox' />
-                        <label htmlFor="1/3" className='form__box-title'>Сутки / трое</label>
+                        <input type="checkbox" name="workingSchedule" checked={workingSchedule.includes('24_h_on_72_h_off')} id="24_h_on_72_h_off" value="24_h_on_72_h_off" onChange={handexCheckboxChange} className='form__checkbox' />
+                        <label htmlFor="24_h_on_72_h_off" className='form__box-title'>Сутки / трое</label>
                     </div>
 
                     <div className="form__checkbox-wrapper">
-                        <input type="checkbox" name="workingSchedule" checked={workingSchedule.includes('freeLance')} id="freeLance" value='freeLance' onChange={handexCheckboxChange} className='form__checkbox' />
-                        <label htmlFor="freeLance" className='form__box-title'>Свободный</label>
+                        <input type="checkbox" name="workingSchedule" checked={workingSchedule.includes('flexible')} id="flexible" value='flexible' onChange={handexCheckboxChange} className='form__checkbox' />
+                        <label htmlFor="flexible" className='form__box-title'>Свободный</label>
                     </div>
                     <div className="form__checkbox-wrapper">
 
-                        <input type="checkbox" name="workingSchedule" checked={workingSchedule.includes('shift')} id="shift" value="shift" onChange={handexCheckboxChange} className='form__checkbox' />
-                        <label htmlFor="shift" className='form__box-title'>Вахтовый метод</label>
+                        <input type="checkbox" name="workingSchedule" checked={workingSchedule.includes('shift_work')} id="shift_work" value="shift_work" onChange={handexCheckboxChange} className='form__checkbox' />
+                        <label htmlFor="shift_work" className='form__box-title'>Вахтовый метод</label>
                     </div>
                 </fieldset>
                 </li>
