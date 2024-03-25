@@ -33,7 +33,7 @@ export function Header({ loggedIn }: Props) {
                         </button>
                         <img className="header__avatar" src={avatar} alt="аватар" />
                         <div className="header__nikWrapper">
-                            <p className="header__nikname">Виталий Крымов</p>
+                            <p className="header__nikname">Сергей Иванов</p>
                             <p className="header__number">#45732</p>
                         </div>
                     </div>

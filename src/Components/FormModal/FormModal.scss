@@ -1,11 +1,5 @@
 .formModal {
   &__container {
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
-    // align-items: center;
-
-
     background-color: #fff;
     width: 644px;
     height: 386px;
@@ -16,8 +10,6 @@
   &__content {
     display: flex;
     flex-direction: column;
-    // align-items: center;
-    // justify-content: center;
     padding: 24px;
   }
 
@@ -59,7 +51,6 @@
     height: 48px;
     background-color: #1785e5;
     color: #fff;
-    // border-radius: 8px;
     font-weight: 700;
     font-size: 16px;
     line-height: 150%;

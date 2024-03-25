@@ -13,23 +13,14 @@ type FormData = {
   agreementType: string[];
   benefits: string[];
   other: string;
-  // gender: string[];
-  // minimum_age: number;
-  // maximum_age: number;
   education: string[];
-  // core_skills: string;
   language_skills: number[];
   language_level: string[];
   driving_skills: string[];
   has_medical_sertificate: boolean;
   citizenship: number[];
   requirements_description: string;
-  // rating: string;
   experience: string[];
-  // completed_orders: string;
-  // recruiters_experience: string;
-  // respond_speed: string;
-  // fulfillment_speed: string;
   recruiter_responsibilities: string[];
   description: string;
   candidate_resume_form: string;
@@ -41,7 +32,6 @@ type FormData = {
 
 
 export const BASE_URL = 'http://80.249.149.201:8000/api/v2';
-// export const BASE_URL = 'http://localhost:3000';
 
 
 
@@ -126,7 +116,6 @@ export const getLanguages = () => {
       'Authorization': `Token ${token}`,
     }
   }).then(res => handleResponse(res))
-    // .then(data => data)
 }
 
 
@@ -169,8 +158,6 @@ export const saveForm = (formData: FormData) => {
 
       },
       recruiter_requirements: {
-        // "industry": 1,
-        // "english_skills": "Advanced",
         recruiter_responsibilities: formData.recruiter_responsibilities,
         description: formData.description,
         candidate_resume_form: formData.candidate_resume_form,
@@ -180,9 +167,6 @@ export const saveForm = (formData: FormData) => {
         payment_amount: formData.numberOfPayment,
         payment_type: formData.paymentFormat,
       }
-      // language_level: formData.language_level,
-      // payment_amount: formData.numberOfPayment,
-      // payment_type: formData.paymentFormat,
     })
   })
     .then(res => handleResponse(res))

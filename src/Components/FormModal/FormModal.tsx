@@ -34,41 +34,15 @@ type Props = GeneralInfo & {
 } & {
     updateFields: (fields: Partial<GeneralInfo>) => void;
 }
-// type Props = {
-//     profession: number[],
-//     city: number[],
-//     citizenship: number[],
-// }
-
-// const prof = [
-//     {
-//         "id": 1,
-//         "name": "Люберцы"
-//     },
-//     {
-//         "id": 2,
-//         "name": "Ленинград"
-//     }
-// ]
 
 export function FormModal(
     { 
-        // profession, location, 
         citizenship,
         professions,
          city, 
          citizenships, 
          isProfessionModalOpen, handleProfessionOpen, isCityModalOpen, handleCityOpen, isCitizenshipModalOpen, handleCitizenshipOpen,  updateFields }: Props
 ) {
-
-    // function handexCheckboxChange(e: React.ChangeEvent<HTMLInputElement>) {
-    //     if (e.target.checked) {
-    //         updateFields({ title: [...title, parseInt(e.target.value)] })
-    //     }
-    //     else {
-    //         updateFields({ title: title.filter((item) => item !== parseInt(e.target.value)) })
-    //     }
-    // }
 
     function renderProfession() {
         if (isProfessionModalOpen === true) {
@@ -136,10 +110,6 @@ export function FormModal(
                     {renderProfession()}
                     {renderCity()}
                     {renderCitizenship()}
-                    {/* <div key={prof.id}>
-                <input type='radio' name='profession' value={prof.id}/>
-                <label htmlFor={prof.id} >{prof.name}</label>
-                </div> */}
                 </fieldset>
                 <div className='formModal__btn-wrapper'>
                 {isCityModalOpen && <button type='button' onClick={handleCityOpen} className='formModal__btn formModal__btn_close'>Отменить</button>}

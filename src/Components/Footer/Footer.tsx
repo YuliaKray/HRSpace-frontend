@@ -54,27 +54,6 @@ export function Footer() {
                 </ul>
                 <p className="footer__copyright">©️2024 Группа компаний HeadHanter</p>
             </div>
-
-
-            {/* <nav className="footer__nav}>
-                <ul className="footer__ul}>
-                    <li><a className="footer__a} href="#">Главная</a></li>
-                    <li><a className="footer__a} href="#">Мои заявки</a></li>
-                    <li><a className="footer__a} href="#">Поиск по рынку</a></li>
-                    <li><a className="footer__a} href="#">Счёта</a></li>
-                    <li><a className="footer__a} href="#">Помощь</a></li>
-                </ul>
-            </nav>
-            <div className="footer__user}>
-                <button className="footer__button} type="button" aria-label="Уведомления">
-                    <img className="footer__icon} src={icon} alt="Уведомления" />
-                </button>
-                <img className="footer__avatar} src={avatar} alt="аватар" />
-                <div className="footer__nikWrapper}>
-                    <p className="footer__nikname}>Виталий Крымов</p>
-                    <p className="footer__number}>#45732</p>
-                </div>
-            </div> */}
         </footer>
     )
 }

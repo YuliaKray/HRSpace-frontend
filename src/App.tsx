@@ -7,43 +7,35 @@ import { Login } from './Components/Login/Login';
 import { useEffect, useState } from 'react';
 import * as api from './Api';
 import { Route, Routes, useNavigate, Navigate } from 'react-router-dom';
-// import { ProtectedRoute } from './Components/ProtectedRoute/ProtectedRoute';
 
-interface ProtectedRouteProps { 
-  // path: string; 
+interface ProtectedRouteProps {
   element: React.ReactNode; // тип для элемента, который должен отобразиться, если пользователь авторизован 
   loggedIn: boolean; // флаг, указывающий, авторизован ли пользователь 
-  // redirectTo: string; // путь для перенаправления, если пользователь не авторизован 
-} 
+}
 
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ 
-  // path, 
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
+  element,
+  loggedIn,
+}) => {
+
+  return loggedIn ? (
+    element
+  ) : (
+    <Navigate to="/auth/login" replace />
+  );
+};
+
+const UnprotectedRoute: React.FC<ProtectedRouteProps> = ({ 
   element, 
   loggedIn, 
-  // redirectTo, 
 }) => { 
 
-    return loggedIn ? (
-        // <Route path={path} element={element} />
+    return loggedIn === false ? (
         element
     ) : (
         <Navigate to="/auth/login" replace /> 
     );
 }; 
-
-// const UnprotectedRoute: React.FC<ProtectedRouteProps> = ({ 
-//   path, 
-//   element, 
-//   loggedIn, 
-//   // redirectTo, 
-// }) => { 
-
-//     return loggedIn === false ? (
-//         <Route path={path} element={element} />
-//     ) : (
-//         <Navigate to="/auth/login" replace /> 
-//     );
-// }; 
 
 
 
@@ -63,19 +55,13 @@ type FormData = {
   benefits: string[];
   other: string;
   education: string[];
-  // core_skills: string;
   language_skills: number[];
   language_level: string[];
   driving_skills: string[];
   has_medical_sertificate: boolean;
   citizenship: number[];
   requirements_description: string;
-  // rating: string;
   experience: string[];
-  // completed_orders: string;
-  // recruiters_experience: string;
-  // respond_speed: string;
-  // fulfillment_speed: string;
   recruiter_responsibilities: string[];
   description: string;
   candidate_resume_form: string;
@@ -99,7 +85,6 @@ type api_login = {
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false); // Для авторизации
-  // const [currentUser, setCurrentUser] = useState({}); // Для авторизации
   const [professions, setProfession] = useState<api_data[]>([]); // Профессии
   const [city, setCity] = useState<api_data[]>([]); // Города
   const [citizenships, setCitizenship] = useState<api_data[]>([]); // гражданство
@@ -109,12 +94,12 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
-    api.getLanguages().then((langData) => {
-      setLangData(langData);
-    }).catch((err) => {
-      console.log(err)
-    })
-  }
+      api.getLanguages().then((langData) => {
+        setLangData(langData);
+      }).catch((err) => {
+        console.log(err)
+      })
+    }
   }, [loggedIn])
 
 
@@ -149,78 +134,42 @@ function App() {
         navigate('/applications/create/', { replace: true });
       }
     }).catch((err) => {
-      console.log(err)
+      alert(err)
     })
   }
 
   function submitForm(formData: FormData) {
     api.saveForm(formData)
-    .catch((err) => {
-      console.log(err);
-    })
+      .catch((err) => {
+        alert(err);
+      })
   }
 
 
 
   return (
     <>
-      <Header loggedIn={loggedIn}/>
+      <Header loggedIn={loggedIn} />
       <main>
         <Routes>
-          <Route path='/auth/login/' element={<Login handleLogin={handleLogin}/>}
-            // loggedIn={loggedIn}
-            // component={Login} 
-            />
-         
-            {/* <ProtectedRoute path='/applications/create/' element={<>
-              <Heading />
-              <Form
-                langData={langData}
-                getProfession={getProfession}
-                getCity={getCity}
-                getCitizenship={getCitizenship}
-                citizenships={citizenships}
-                city={city}
-                professions={professions}
-                createForm={submitForm} />
-            </>}          
-            loggedIn={loggedIn} 
-        /> */}
+          <Route path='/auth/login/' element={<UnprotectedRoute loggedIn={loggedIn} element={<Login handleLogin={handleLogin} />}/>} />
+          <Route path='/applications/create/' element={<ProtectedRoute
+            element={
+              <>
+                <Heading />
+                <Form
+                  langData={langData}
+                  getProfession={getProfession}
+                  getCity={getCity}
+                  getCitizenship={getCitizenship}
+                  citizenships={citizenships}
+                  city={city}
+                  professions={professions}
+                  createForm={submitForm} />
+              </>}
+            loggedIn={loggedIn} />} />
 
-         <Route path='/applications/create/' element={<ProtectedRoute 
-          // path="/applications/create/" 
-          element={
-            <>
-              <Heading />
-              <Form
-                langData={langData}
-                getProfession={getProfession}
-                getCity={getCity}
-                getCitizenship={getCitizenship}
-                citizenships={citizenships}
-                city={city}
-                professions={professions}
-                createForm={submitForm} />
-            </>}          
-            loggedIn={loggedIn} 
-          // redirectTo="/auth/login/" 
-        />} />
-          {/* <Route path='/aplications/create/' element={
-            <>
-              <Heading />
-              <Form
-                langData={langData}
-                getProfession={getProfession}
-                getCity={getCity}
-                getCitizenship={getCitizenship}
-                citizenships={citizenships}
-                city={city}
-                professions={professions}
-                createForm={submitForm} />
-            </>}
-            // loggedIn={loggedIn}
-          /> */}
-            <Route path="*" element={<Login handleLogin={handleLogin}/>} />
+          <Route path="*" element={<Login handleLogin={handleLogin} />} />
 
         </Routes>
       </main>

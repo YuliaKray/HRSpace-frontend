@@ -4,7 +4,6 @@ import "../Components/Form.scss"
 type Payment = {
     numberOfPayment: number;
     paymentFormat: string;
-    // startDate: Array<number>;
 }
 
 type PaymentFormProps = Payment & {
@@ -20,7 +19,6 @@ export function PaymentForm({ numberOfPayment, paymentFormat, updateFields, curr
 
             {/* тут будут три карточки */}
             <Tooltips currentStepIndex={currentStepIndex} />
-            {/* {console.log(currentStepIndex)} */}
             <ul className='form__wrapper form__wrapper_last-step'>
 
                 <li className="form__box">

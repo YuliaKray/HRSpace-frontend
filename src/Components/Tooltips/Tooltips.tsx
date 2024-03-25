@@ -1,7 +1,6 @@
 import icon from '../../images/subway_tick.svg'
 import './Tooltips.scss';
 import { tooltip_1, tooltip_2, tooltip_3, tooltip_4, tooltip_5, tooltip_6, tooltip_7, tooltip_8, tooltip_9 } from '../../assets/constants';
-// import { JSXElementConstructor, ReactElement, ReactNode, useEffect, useState } from 'react';
 
 type TooltipsProps = {
     currentStepIndex: number
@@ -30,7 +29,6 @@ export function Tooltips({ currentStepIndex }: TooltipsProps) {
     }
 
     function renderTooltip() {
-        // console.log(currentStepIndex)
 
         const firstStep = [tooltip_1, tooltip_2, tooltip_3];
         const secondStep = [tooltip_4];

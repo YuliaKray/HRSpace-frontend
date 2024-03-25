@@ -4,14 +4,10 @@ import { Tooltips } from "../Components/Tooltips/Tooltips"; //Компонент
 import { LanguageInput } from "../Components/LanguageInput";
 
 type EmployeeRequirements = {
-    // gender: string[];
-    // minimum_age: number;
-    // maximum_age: number;
     education: string[];
     experience: string[];
     language_skills: number[];
     language_level: string[];
-    // core_skills: string;
     driving_skills: string[];
     has_medical_sertificate: boolean;
     requirements_description: string;
@@ -31,22 +27,12 @@ type EmployeeRequirementsFormProps = EmployeeRequirements & {
     }[],
 }
 
-export function EmployeeRequirementsForm({ 
-    // gender,  minimum_age, maximum_age, 
-    education, experience, language_skills, language_level, 
-    //core_skills, 
+export function EmployeeRequirementsForm({ education, experience, language_skills, language_level, 
     driving_skills, has_medical_sertificate, requirements_description, updateFields, currentStepIndex, getCitizenship, handleCitizenshipOpen, langData }: EmployeeRequirementsFormProps) {
 
     const [language, setLanguage] = useState<JSX.Element[]>([]); // стейт для добавления новых инпутов выбора языка в разметку
 
     function handleCheckboxChange(e: React.ChangeEvent<HTMLInputElement>) {
-        // if (e.target.name === 'gender') {
-        //     if (e.target.checked) {
-        //         updateFields({ gender: [...gender, e.target.value] })
-        //     } else {
-        //         updateFields({ gender: gender.filter((item) => item !== e.target.value) })
-        //     }
-        // }
 
         if (e.target.name === 'education') {
             if (e.target.checked) {
@@ -89,33 +75,6 @@ export function EmployeeRequirementsForm({
             <h2 className="form__title">Шаг 3 из 5. Требования к соискателю</h2>
             <Tooltips currentStepIndex={currentStepIndex} />
             <ul className="form__wrapper">
-
-                {/*Пол*/}
-                {/* <li className="form__box">
-                    <p className="form__subtitle">Пол</p>
-                    <fieldset className="form__fieldset">
-                        <div className="form__checkbox-wrapper">
-                            <input type="checkbox" className="form__checkbox" id="gender_not_required" name="gender" value="not_required" checked={gender.includes('not_required')} onChange={handleCheckboxChange} />
-                            <label htmlFor="gender_not_required" className="form__box-title"> Не важно</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" className="form__checkbox" id="female" name="gender" value="female" checked={gender.includes('female')} onChange={handleCheckboxChange} />
-                            <label htmlFor="female" className="form__box-title">Женский</label>
-                        </div>
-                        <div className="form__checkbox-wrapper">
-                            <input type="checkbox" className="form__checkbox"  id="male"name="gender" value="male" checked={gender.includes('male')} onChange={handleCheckboxChange} />
-                            <label htmlFor="male" className="form__box-title">Мужской</label>
-                        </div>
-                    </fieldset>
-                </li> */}
-
-                {/*возраст*/}
-                {/* <div>
-                    <p className="form__subtitle">возраст</p>
-                    <input type="number" className="form__checkbox" placeholder="от" min={14} max={maximum_age} name="minimum_age" defaultValue={minimum_age} id="minimum_age" onChange={e => updateFields({ minimum_age: parseInt(e.target.value)})} />
-                    <input type="number" className="form__checkbox" placeholder="до" min={minimum_age} max={99} name="maximum_age" defaultValue={maximum_age} id="maximum_age" onChange={e => updateFields({ maximum_age: parseInt(e.target.value)})} />
-                </div> */}
-
 
                 {/*Образование */}
                 <li className="form__box">
@@ -167,21 +126,6 @@ export function EmployeeRequirementsForm({
 
                     </fieldset>
                 </li>
-
-                {/*Ключевые навыки*/}
-                {/*здесь не просто инпут, потом надо вернуться подумать*/}
-                {/* <li className="form__box">
-                    <label htmlFor="core_skills" className="form__subtitle">Ключевые навыки</label>
-                    <input
-                        className="form__input-text"
-                        type="text"
-                        id="core_skills"
-                        name="core_skills"
-                        onChange={(e) => updateFields({ core_skills: e.target.value })}
-                        value={core_skills}
-                        placeholder="Введите"
-                    />
-                </li> */}
 
                 {/* Знание иностранных языков */}
                 <li className="form__box">
@@ -260,9 +204,6 @@ export function EmployeeRequirementsForm({
                         placeholder="Опишите, какими ключевыми навыками должен обладать соискатель и какие обязанности ему предстоит исполнять"
                     />
                 </li>
-
-
-
 
             </ul>
         </>

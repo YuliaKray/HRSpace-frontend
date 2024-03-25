@@ -25,18 +25,6 @@ type GeneralInfoFormProps = GeneralInfo & {
 
 export function GeneralInfoForm({ name, startDate, lowestSalary, highestSalary, numberOfEmployees, recruitersQty, updateFields, currentStepIndex, getProfession, handleProfessionOpen, handleCityOpen, getCity }: GeneralInfoFormProps) {
 
-    // function handexCheckboxChange(e: React.ChangeEvent<HTMLInputElement>) {
-    //     if (e.target.checked) {
-    //         // updateFields({ startDate: [...startDate, e.target.value] })
-    //         updateFields({ startDate: [ e.target.value] })
-
-    //     }
-    //     else {
-    //         updateFields({ startDate: startDate.filter((item) => item !== e.target.value) })
-    //     }
-    //     console.log(startDate)
-    // }
-
     
     function handleButtonProfessionClick() {
         getProfession();
@@ -52,7 +40,6 @@ export function GeneralInfoForm({ name, startDate, lowestSalary, highestSalary, 
         <>
             <h2 className="form__title">Шаг 1 из 5. Общая информация</h2>
             <Tooltips currentStepIndex={currentStepIndex} />
-            {/* {console.log(currentStepIndex)} */}
             <ul className="form__wrapper">
                 <li className="form__box">
                     <label htmlFor="name" className="form__subtitle">Название <span className="form__required">*</span></label>
@@ -70,33 +57,12 @@ export function GeneralInfoForm({ name, startDate, lowestSalary, highestSalary, 
                 <li className="form__box">
                     <p className="form__subtitle">Профессия <span className="form__required">*</span></p>
                     <button className="form__btn-popup" type="button" onClick={handleButtonProfessionClick}>Выберите из списка</button>
-                    {/* Закоментировала этот кусок, потому что тут ссылка открывет модальное окно
 
-                    <label htmlFor="title" className="form__subtitle">Профессия <span className="form__required">*</span></label>
-                    <input
-                        type="select"
-                        id="title"
-                        name="title"
-                        onChange={(e) => updateFields({ title: e.target.value })}
-                        value={title}
-                        required
-                    /> */}
                 </li>
                 <li className="form__box">
                     <p className="form__subtitle">Город <span className="form__required">*</span></p>
                     <button className="form__btn-popup" type="button" onClick={handleButtonCityClick}>Выберите из списка</button>
 
-                    {/* Закоментировала этот кусок, потому что тут ссылка открывет модальное окно
-
-                     <label htmlFor="location" className="form__subtitle">Город <span className="form__required">*</span></label>
-                    <input
-                        type="select"
-                        id="phone"
-                        name="location"
-                        onChange={(e) => updateFields({ location: e.target.value })}
-                        value={location}
-                        required
-                    /> */}
                 </li>
                 <li className="form__box">
                     <label htmlFor="salary" className="form__subtitle">Зарплата gross, ₽ <span className="form__required">*</span></label>
@@ -146,18 +112,18 @@ export function GeneralInfoForm({ name, startDate, lowestSalary, highestSalary, 
                         </div>
 
                         <div className="form__radio-wrapper">
-                            <input type="radio" name="startDate" id="withinTwoWeeks" checked={startDate === "withinTwoWeeks"} onChange={e => updateFields({ startDate: e.target.value})} value="withinTwoWeeks" className='form__checkbox' />
-                            <label htmlFor="withinTwoWeeks" className='form__box-title'>В течение 2 недель</label>
+                            <input type="radio" name="startDate" id="in_week" checked={startDate === "in_week"} onChange={e => updateFields({ startDate: e.target.value})} value="in_week" className='form__checkbox' />
+                            <label htmlFor="in_week" className='form__box-title'>В течение 2 недель</label>
                         </div>
 
                         <div className="form__radio-wrapper">
-                            <input type="radio" name="startDate" id="withinMonth" checked={startDate === "withinMonth"} onChange={e => updateFields({ startDate: e.target.value})} value="withinMonth" className='form__checkbox' />
-                            <label htmlFor="withinMonth" className='form__box-title'>В течение месяца</label>
+                            <input type="radio" name="startDate" id="in_month" checked={startDate === "in_month"} onChange={e => updateFields({ startDate: e.target.value})} value="in_month" className='form__checkbox' />
+                            <label htmlFor="in_month" className='form__box-title'>В течение месяца</label>
                         </div>
 
                         <div className="form__radio-wrapper">
-                            <input type="radio" name="startDate" id="withinThreeMonth" checked={startDate === "withinThreeMonth"} onChange={e => updateFields({ startDate: e.target.value})} value="withinThreeMonth" className='form__checkbox' />
-                            <label htmlFor="withinThreeMonth" className='form__box-title'>В течение 3 месяцев</label>
+                            <input type="radio" name="startDate" id="in_3_month" checked={startDate === "in_3_month"} onChange={e => updateFields({ startDate: e.target.value})} value="in_3_month" className='form__checkbox' />
+                            <label htmlFor="in_3_month" className='form__box-title'>В течение 3 месяцев</label>
                         </div>
 
                         <div className="form__radio-wrapper">
@@ -168,13 +134,6 @@ export function GeneralInfoForm({ name, startDate, lowestSalary, highestSalary, 
 
                     </fieldset>
                 </li>
-
-                {/* <li>
-                    Переисопльзованный компанент для радиокнопок 
-                    <SelectedItemContainer
-                        isCheckbox={false}
-                        constants={firstWorkDay} />
-                </li> */}
 
                 <li>
                     <fieldset className="form__box">
@@ -198,11 +157,6 @@ export function GeneralInfoForm({ name, startDate, lowestSalary, highestSalary, 
                     </fieldset>
                 </li>
 
-
-                {/* Проверка как работает переиспользованый компонент */}
-                {/* <SelectedItemContainer
-                    constants={workSchedule}
-                    isCheckbox={true} /> */}
             </ul>
         </>
     );

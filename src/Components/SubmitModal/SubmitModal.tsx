@@ -1,5 +1,5 @@
 import './submitModal.scss';
-// import warningIcon from '../../images/akar-icons_triangle-alert.svg'
+
 export function SubmitModal({submitForm, closeModal}: {submitForm: () => void, closeModal: () => void }) {
     return (
     <div className='submitModal__content'>

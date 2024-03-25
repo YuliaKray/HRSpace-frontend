@@ -15,20 +15,6 @@ type LanguageTypeProps = LanguageType & {
   }[],
 }
 
-//Это дата пример для данных по языкам которые будем получать из апи
-// const dataLang = [{
-//   id: 1,
-//   language: "Английский язык"
-// }, {
-//   id: 2,
-//   language: "Французкий язык"
-
-// }, {
-//   id: 3,
-//   language: "Немецкий язык"
-
-// }]
-
 
 export function LanguageInput({ language_skills, language_level, updateFields, langData }: LanguageTypeProps) {
   const [disabledInput, setDisabledInput] = useState(true); // стейт для блокировки инпута уровня языка
@@ -40,7 +26,6 @@ export function LanguageInput({ language_skills, language_level, updateFields, l
 
   //Функция для разблокировки инпута выбора уровня знания языка
   function openInput() {
-    // console.log(language_skills);
     if (language_skills.length !== 0) {
 
       setDisabledInput(false);
@@ -51,7 +36,6 @@ export function LanguageInput({ language_skills, language_level, updateFields, l
     const langSelector = langData.map((language) => {
       return (
         <>
-          {/*Похоже value здесь будет id языка, который придет с бека !!!!*/}
           <option value={language.id} key={language.id}>{language.name}</option>
         </>
       )

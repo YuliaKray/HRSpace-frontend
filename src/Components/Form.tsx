@@ -55,29 +55,20 @@ type FormData = {
     numberOfEmployees: number;
     startDate: string;
     recruitersQty: number;
-    employmentType: string[];// number; // 
+    employmentType: string[]; 
     workingSchedule: Array<string>;
-    workingType: string[]; //string[]
+    workingType: string[]; 
     agreementType: string[];
     benefits: string[];
     other: string;
-    // gender: string[];
-    // minimum_age: number;
-    // maximum_age: number;
     education: string[];
-    // core_skills: string;
     language_skills: number[];
     language_level: string[];
     driving_skills: string[];
     has_medical_sertificate: boolean;
-    citizenship: number[];// number; //string[]
+    citizenship: number[];
     requirements_description: string;
-    // rating: string;
     experience: string[];
-    // completed_orders: string;
-    // recruiters_experience: string;
-    // respond_speed: string;
-    // fulfillment_speed: string;
     recruiter_responsibilities: string[];
     description: string;
     candidate_resume_form: string;
@@ -103,23 +94,14 @@ const INITIAL_DATA = {
     agreementType: Array<string>(),
     benefits: Array<string>(),
     other: '',
-    // gender: Array<string>(),
-    // minimum_age: 14,
-    // maximum_age: 99,
     education: Array<string>(),
     experience: Array<string>(),
     language_skills: Array<number>(),
     language_level: Array<string>(),
-    // core_skills: "",
     driving_skills: Array<string>(),
     has_medical_sertificate: false,
     citizenship: [1],
     requirements_description: "",
-    // rating: "",
-    // completed_orders: "",
-    // recruiters_experience: "",
-    // respond_speed: "",
-    // fulfillment_speed: "",
     recruiter_responsibilities: Array<string>(),
     description: "",
     candidate_resume_form: "no_pre_interview",
@@ -127,8 +109,6 @@ const INITIAL_DATA = {
     numberOfPayment: 30000,
     paymentFormat: '',
     recruit_experience: 'no_important'
-
-
 };
 
 export function Form({ langData, getProfession, professions, city, getCity, citizenships, getCitizenship, createForm }: FormProps) {
@@ -147,8 +127,6 @@ export function Form({ langData, getProfession, professions, city, getCity, citi
         setIsModalOpen(false);
     }
 
-
-
     function handleProfessionOpen() {
         setisProfessionModalOpen(!isProfessionModalOpen);
     }
@@ -162,7 +140,7 @@ export function Form({ langData, getProfession, professions, city, getCity, citi
     }
 
 
-    const [currentIndex, setCurrentIndex] = useState(0); //попытка сделать чтобы вспывашкив начале сами менялись
+    const [currentIndex, setCurrentIndex] = useState(0);
     const [formData, setFormData] = useState(INITIAL_DATA);
 
     function updateFields(fields: Partial<FormData>) {
@@ -206,7 +184,6 @@ export function Form({ langData, getProfession, professions, city, getCity, citi
     function handleSubmit(event: React.FormEvent) {
         event.preventDefault();
         console.log(formData)
-        // event.target.checkValidity()
     }
 
     function changeImg() {
@@ -236,7 +213,6 @@ export function Form({ langData, getProfession, professions, city, getCity, citi
     return (
         <>
             <Modal modalOpen={isModalOpen || isProfessionModalOpen || isCityModalOpen || isCitizenshipModalOpen} closeModal={closeModal}>
-                {/* Я влезла сюда, но вроде написанная логика для модалки сабмита не нарушилась */}
                 {isProfessionModalOpen || isCityModalOpen || isCitizenshipModalOpen ? 
                 <FormModal {...formData} updateFields={updateFields}
                     professions={professions}

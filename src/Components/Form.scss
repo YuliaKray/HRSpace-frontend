@@ -1,13 +1,10 @@
 .form {
-    // background-color: #e9eaee;
     border-radius: 20px;
     padding: 80px 96px;
-    // margin: 0 auto;
     display: grid;
     grid-template-rows: repeat(4, auto);
     grid-template-columns: minmax(500px, auto) 405px;
     gap: 60px 124px;
-    // max-width: 1247px;
 
     &_last-step {
         display: flex;
@@ -29,7 +26,6 @@
         display: flex;
         flex-direction: column;
         gap: 40px;
-        // width: "100%",
         max-width: 719px;
         margin: 0;
         padding: 0;
@@ -74,7 +70,6 @@
 
     &__input-text {
         align-self: flex-start;
-        // margin-bottom: 20px;
         padding-left: 16px;
         border: 1px solid #babdbf;
         border-radius: 8px;
@@ -83,7 +78,6 @@
         height: 46px;
         box-sizing: border-box;
         background-color: #fff;
-        // color: #959799;
         color: black;
         outline: none;
 
@@ -153,14 +147,11 @@
     }
 
     &__radio {
-        // accent-color: #fff;
-        // background-color: #1785e5;
         accent-color: #1785e5;
         width: 16px;
         height: 16px;
     }
 
-    //такой же класс по стилям как checkbox-wrapper
     &__radio-wrapper {
         display: flex;
         flex-direction: row;
@@ -168,7 +159,6 @@
     }
 
     &__btn-wrapper {
-        // padding-top: 60px;
         display: flex;
         flex-direction: row;
         gap: 16px
@@ -180,15 +170,8 @@
         object-fit: contain;
         object-position: center;
         border-radius: 8px;
-        // background-color: #aab0b0;
         justify-self: end;
 
-        // @media screen and (max-width: 1200px) {
-
-        // width: 205px;
-        // height: 420px;
-
-        // }
     }
 
     &__btn {
@@ -211,7 +194,6 @@
         &_close {
             background-color: transparent;
             color: #1785e5;
-            // width: 89px;
             font-weight: 400;
         }
 
@@ -222,9 +204,6 @@
         }
     }
 
-    // &__payment{
-    //     max-width
-    // }
     &__fieldset-payment {
         display: flex;
         flex-direction: row;
@@ -239,7 +218,6 @@
     &__payment-wrapper {
         box-shadow: 0 0 20px 0 rgba(64, 66, 228, 0.15);
         background: #fff;
-        // background-color: #e0e8fd;
         border-radius: 20px;
         position: relative;
         max-width: 405px;
@@ -288,21 +266,3 @@
 
 
 }
-
-// .payment {
-//     display: flex;
-//     flex-direction: row;
-//     gap: 16px;
-//     border: none;
-//     padding: 0;
-//     margin: 0;
-//     margin-top: 32px;
-
-//     &__wrapper {
-//         background-color: #d2d2d2;
-//         border-radius: 20px;
-//         position: relative;
-//         max-width: 405px;
-//         width: 100%;
-//     }
-// }

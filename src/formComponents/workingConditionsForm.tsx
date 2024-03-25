@@ -3,7 +3,7 @@ import "../Components/Form.scss"
 
 
 type workingConditions = {
-    employmentType: string[]; // number;
+    employmentType: string[];
     workingSchedule: string[];
     workingType: string[];
     agreementType: string[];
@@ -185,28 +185,28 @@ export function WorkingConditionsForm({ employmentType, workingSchedule, working
                     <p className='form__subtitle'>Оформление</p>
                     <fieldset className="form__fieldset">
                         <div className="form__checkbox-wrapper">
-                            <input type="checkbox" id="jobAgreement" name="agreementType" checked={agreementType.includes('jobAgreement')} onChange={handexCheckboxChange} value="jobAgreement" className='form__checkbox' />
-                            <label htmlFor="jobAgreement" className='form__box-title'>Трудовой договор</label>
+                            <input type="checkbox" id="contract" name="agreementType" checked={agreementType.includes('contract')} onChange={handexCheckboxChange} value="contract" className='form__checkbox' />
+                            <label htmlFor="contract" className='form__box-title'>Трудовой договор</label>
                         </div>
 
                         <div className="form__checkbox-wrapper">
-                            <input type="checkbox" id="GPH" name="agreementType" checked={agreementType.includes('GPH')} onChange={handexCheckboxChange} value="GPH" className='form__checkbox' />
-                            <label htmlFor="GPH" className='form__box-title'>ГПХ</label>
+                            <input type="checkbox" id="civil-personal_contract" name="agreementType" checked={agreementType.includes('civil-personal_contract')} onChange={handexCheckboxChange} value="civil-personal_contract" className='form__checkbox' />
+                            <label htmlFor="civil-personal_contract" className='form__box-title'>ГПХ</label>
                         </div>
 
                         <div className="form__checkbox-wrapper">
-                            <input type="checkbox" id="IP" name="agreementType" checked={agreementType.includes('IP')} onChange={handexCheckboxChange} value="IP" className='form__checkbox' />
-                            <label htmlFor="IP" className='form__box-title'>ИП</label>
+                            <input type="checkbox" id="individual_entrepreneurship" name="agreementType" checked={agreementType.includes('individual_entrepreneurship')} onChange={handexCheckboxChange} value="individual_entrepreneurship" className='form__checkbox' />
+                            <label htmlFor="individual_entrepreneurship" className='form__box-title'>ИП</label>
                         </div>
 
                         <div className="form__checkbox-wrapper">
-                            <input type="checkbox" id="selfEmployed" name="agreementType" checked={agreementType.includes('selfEmployed')} onChange={handexCheckboxChange} value="selfEmployed" className='form__checkbox' />
-                            <label htmlFor="selfEmployed" className='form__box-title'>Самозанятый</label>
+                            <input type="checkbox" id="self-employed" name="agreementType" checked={agreementType.includes('self-employed')} onChange={handexCheckboxChange} value="self-employed" className='form__checkbox' />
+                            <label htmlFor="self-employed" className='form__box-title'>Самозанятый</label>
                         </div>
 
                         <div className="form__checkbox-wrapper">
-                            <input type="checkbox" id="sovmestitelstvo" name="agreementType" checked={agreementType.includes('sovmestitelstvo')} onChange={handexCheckboxChange} value="sovmestitelstvo" />
-                            <label htmlFor="sovmestitelstvo" className='form__box-title'>Совместительство</label>
+                            <input type="checkbox" id="holding_multiple_positions" name="agreementType" checked={agreementType.includes('holding_multiple_positions')} onChange={handexCheckboxChange} value="holding_multiple_positions" />
+                            <label htmlFor="holding_multiple_positions" className='form__box-title'>Совместительство</label>
                         </div>
                     </fieldset>
                 </li>
@@ -217,8 +217,8 @@ export function WorkingConditionsForm({ employmentType, workingSchedule, working
                     <p className='form__subtitle'>Дополнительно</p>
                     <fieldset className="form__fieldset">
                     <div className="form__radio-wrapper">
-                        <input type="checkbox" id="DMS" value="DMS" checked={benefits.includes('DMS')} name="benefits" onChange={handexCheckboxChange} className='form__checkbox' />
-                        <label className='form__box-title' htmlFor="DMS">ДМС</label>
+                        <input type="checkbox" id="VMI" value="VMI" checked={benefits.includes('VMI')} name="benefits" onChange={handexCheckboxChange} className='form__checkbox' />
+                        <label className='form__box-title' htmlFor="VMI">ДМС</label>
                     </div>
 
                     <div className="form__radio-wrapper">
@@ -227,43 +227,43 @@ export function WorkingConditionsForm({ employmentType, workingSchedule, working
                     </div>
 
                     <div className="form__radio-wrapper">
-                        <input type="checkbox" id="freeFood" value="freeFood" checked={benefits.includes("freeFood")} name="benefits" onChange={handexCheckboxChange} className='form__checkbox' />
-                        <label className='form__box-title' htmlFor="freeFood">Оплата питания</label>
+                        <input type="checkbox" id="meal_compensation" value="meal_compensation" checked={benefits.includes("meal_compensation")} name="benefits" onChange={handexCheckboxChange} className='form__checkbox' />
+                        <label className='form__box-title' htmlFor="meal_compensation">Оплата питания</label>
                     </div>
 
                     <div className="form__radio-wrapper">
-                        <input type="checkbox" id="freeParking" value="freeParking" name="benefits" checked={benefits.includes("freeParking")} onChange={handexCheckboxChange} className='form__checkbox' />
-                        <label className='form__box-title' htmlFor="freeParking">Бесплатная парковка</label>
+                        <input type="checkbox" id="free_parking" value="free_parking" name="benefits" checked={benefits.includes("free_parking")} onChange={handexCheckboxChange} className='form__checkbox' />
+                        <label className='form__box-title' htmlFor="free_parking">Бесплатная парковка</label>
                     </div>
 
                     <div className="form__radio-wrapper">
-                        <input type="checkbox" id="freeCellPhone" value="freeCellPhone" name="benefits" checked={benefits.includes("freeCellPhone")} onChange={handexCheckboxChange} className='form__checkbox' />
-                        <label className='form__box-title' htmlFor="freeCellPhone">Оплата мобильной связи</label>
+                        <input type="checkbox" id="mobile_phone_compensation" value="mobile_phone_compensation" name="benefits" checked={benefits.includes("mobile_phone_compensation")} onChange={handexCheckboxChange} className='form__checkbox' />
+                        <label className='form__box-title' htmlFor="mobile_phone_compensation">Оплата мобильной связи</label>
                     </div>
 
                     <div className="form__radio-wrapper">
-                        <input type="checkbox" id="freeTransportPass" value="freeTransportPass" name="benefits" checked={benefits.includes("freeTransportPass")} onChange={handexCheckboxChange} className='form__checkbox' />
-                        <label className='form__box-title' htmlFor="freeTransportPass">Оплата проезда</label>
+                        <input type="checkbox" id="transportation_compensation" value="transportation_compensation" name="benefits" checked={benefits.includes("transportation_compensation")} onChange={handexCheckboxChange} className='form__checkbox' />
+                        <label className='form__box-title' htmlFor="transportation_compensation">Оплата проезда</label>
                     </div>
 
                     <div className="form__radio-wrapper">
-                        <input type="checkbox" id="freeLanguageCourse" value="freeLanguageCourse" name="benefits" checked={benefits.includes("freeLanguageCourse")} onChange={handexCheckboxChange} className='form__checkbox' />
-                        <label className='form__box-title' htmlFor="freeLanguageCourse">Языковые курсы</label>
+                        <input type="checkbox" id="language_training" value="language_training" name="benefits" checked={benefits.includes("language_training")} onChange={handexCheckboxChange} className='form__checkbox' />
+                        <label className='form__box-title' htmlFor="language_training">Языковые курсы</label>
                     </div>
 
                     <div className="form__radio-wrapper">
-                        <input type="checkbox" id="freeProfessionalCourses" value="freeProfessionalCourses" name="benefits" checked={benefits.includes("freeProfessionalCourses")} onChange={handexCheckboxChange} className='form__checkbox' />
-                        <label className='form__box-title' htmlFor="freeProfessionalCourses">Профессиональные курсы</label>
+                        <input type="checkbox" id="professional_training" value="professional_training" name="benefits" checked={benefits.includes("professional_training")} onChange={handexCheckboxChange} className='form__checkbox' />
+                        <label className='form__box-title' htmlFor="professional_training">Профессиональные курсы</label>
                     </div>
 
                     <div className="form__radio-wrapper">
-                        <input type="checkbox" id="suitableForUnderages" value="suitableForUnderages" name="benefits" checked={benefits.includes("suitableForUnderages")} onChange={handexCheckboxChange} className='form__checkbox' />
-                        <label className='form__box-title' htmlFor="suitableForUnderages">Подходит подросткам с 14 лет</label>
+                        <input type="checkbox" id="from_age_14" value="from_age_14" name="benefits" checked={benefits.includes("from_age_14")} onChange={handexCheckboxChange} className='form__checkbox' />
+                        <label className='form__box-title' htmlFor="from_age_14">Подходит подросткам с 14 лет</label>
                     </div>
 
                     <div className="form__radio-wrapper">
-                        <input type="checkbox" id="suitableForDisabled" value="suitableForDisabled" checked={benefits.includes("suitableForDisabled")} name="benefits" onChange={handexCheckboxChange} className='form__checkbox' />
-                        <label className='form__box-title' htmlFor="suitableForDisabled">Подходит людям с ограниченными возможностями</label>
+                        <input type="checkbox" id="for_people_with_disabilities" value="for_people_with_disabilities" checked={benefits.includes("for_people_with_disabilities")} name="benefits" onChange={handexCheckboxChange} className='form__checkbox' />
+                        <label className='form__box-title' htmlFor="for_people_with_disabilities">Подходит людям с ограниченными возможностями</label>
                     </div>
                 </fieldset>
                 </li>
@@ -285,6 +285,5 @@ export function WorkingConditionsForm({ employmentType, workingSchedule, working
 
             </ul>
         </>
-        // </div>
     );
 }
